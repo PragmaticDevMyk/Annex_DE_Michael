@@ -1,0 +1,44 @@
+[2026-05-12T14:01:56.564+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T14:01:56.621+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data manual__2026-05-12T13:51:31.598021+00:00 [queued]>
+[2026-05-12T14:01:56.629+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data manual__2026-05-12T13:51:31.598021+00:00 [queued]>
+[2026-05-12T14:01:56.630+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2026-05-12T14:01:56.647+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-12 13:51:31.598021+00:00
+[2026-05-12T14:01:56.659+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'manual__2026-05-12T13:51:31.598021+00:00', '--job-id', '111', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmp6yjwstie']
+[2026-05-12T14:01:56.662+0000] {standard_task_runner.py:91} INFO - Job 111: Subtask clean_data
+[2026-05-12T14:01:56.664+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1029) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T14:01:56.664+0000] {standard_task_runner.py:64} INFO - Started process 1034 to run task
+[2026-05-12T14:01:56.737+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data manual__2026-05-12T13:51:31.598021+00:00 [running]> on host 87c449af332c
+[2026-05-12T14:01:56.867+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T13:51:31.598021+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-12T13:51:31.598021+00:00'
+[2026-05-12T14:01:56.870+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T14:02:07.830+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T14:02:07.831+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 190, in run_cleaning
+    sales_data = sales_data.drop_duplicates(subset=['customer_id'])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 6566, in drop_duplicates
+    result = self[-self.duplicated(subset, keep=keep)]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 6698, in duplicated
+    raise KeyError(Index(diff))
+KeyError: Index(['customer_id'], dtype='object')
+[2026-05-12T14:02:07.851+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=manual__2026-05-12T13:51:31.598021+00:00, execution_date=20260512T135131, start_date=20260512T140156, end_date=20260512T140207
+[2026-05-12T14:02:07.866+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 111 for task clean_data (Index(['customer_id'], dtype='object'); 1034)
+[2026-05-12T14:02:07.900+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T14:02:07.924+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T14:02:07.931+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

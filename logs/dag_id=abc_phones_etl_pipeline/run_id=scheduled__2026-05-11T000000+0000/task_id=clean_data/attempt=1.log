@@ -1,0 +1,802 @@
+[2026-05-12T09:16:57.797+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T09:16:57.843+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T09:16:57.852+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T09:16:57.853+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T09:16:57.868+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T09:16:57.879+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '32', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpi7p81gwh']
+[2026-05-12T09:16:57.881+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=260) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T09:16:57.882+0000] {standard_task_runner.py:91} INFO - Job 32: Subtask clean_data
+[2026-05-12T09:16:57.882+0000] {standard_task_runner.py:64} INFO - Started process 265 to run task
+[2026-05-12T09:16:57.954+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T09:16:58.070+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T09:16:58.071+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T09:17:00.832+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:5 DtypeWarning: Columns (0,1,3,4,5,6,7,10,11,12,13,14,15) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T09:17:02.790+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T09:17:02.791+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3791, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 152, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 181, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'DOB'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 9, in run_cleaning
+    sales_data['DOB'] = pd.to_datetime(sales_data['DOB'], errors='coerce')
+                                       ~~~~~~~~~~^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 3893, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3798, in get_loc
+    raise KeyError(key) from err
+KeyError: 'DOB'
+[2026-05-12T09:17:02.837+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T091657, end_date=20260512T091702
+[2026-05-12T09:17:02.861+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 32 for task clean_data ('DOB'; 265)
+[2026-05-12T09:17:02.983+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T09:17:03.013+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T09:17:03.017+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T09:58:09.125+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T09:58:09.184+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T09:58:09.200+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T09:58:09.201+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T09:58:09.229+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T09:58:09.244+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '37', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpqidtp7yl']
+[2026-05-12T09:58:09.249+0000] {standard_task_runner.py:91} INFO - Job 37: Subtask clean_data
+[2026-05-12T09:58:09.257+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=448) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T09:58:09.258+0000] {standard_task_runner.py:64} INFO - Started process 453 to run task
+[2026-05-12T09:58:09.372+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T09:58:09.608+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T09:58:09.619+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T09:58:13.261+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:20 DtypeWarning: Columns (0,1,3,4,5,6,7,10,11,12,13,14,15) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T09:58:15.056+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:21 DtypeWarning: Columns (0,1,2,3,4) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T09:58:20.062+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:24 FutureWarning: In a future version of pandas, parsing datetimes with mixed time zones will raise an error unless `utc=True`. Please specify `utc=True` to opt in to the new behaviour and silence this warning. To create a `Series` with mixed offsets and `object` dtype, please use `apply` and `datetime.datetime.strptime`
+[2026-05-12T09:58:20.488+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T09:58:20.489+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 30, in run_cleaning
+    sales_data = sales_details.merge(dob_data, on='Loan Id', how='left')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 10487, in merge
+    return merge(
+           ^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/reshape/merge.py", line 169, in merge
+    op = _MergeOperation(
+         ^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/reshape/merge.py", line 791, in __init__
+    ) = self._get_merge_keys()
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/reshape/merge.py", line 1269, in _get_merge_keys
+    right_keys.append(right._get_label_or_level_values(rk))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/generic.py", line 1844, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'Loan Id'
+[2026-05-12T09:58:20.529+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T095809, end_date=20260512T095820
+[2026-05-12T09:58:20.546+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 37 for task clean_data ('Loan Id'; 453)
+[2026-05-12T09:58:20.634+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T09:58:20.663+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T09:58:20.667+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T10:10:23.796+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T10:10:23.836+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T10:10:23.845+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T10:10:23.846+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T10:10:23.863+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T10:10:23.874+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpq7q26jkv']
+[2026-05-12T10:10:23.877+0000] {standard_task_runner.py:91} INFO - Job 43: Subtask clean_data
+[2026-05-12T10:10:23.878+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=530) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T10:10:23.879+0000] {standard_task_runner.py:64} INFO - Started process 535 to run task
+[2026-05-12T10:10:23.950+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T10:10:24.067+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T10:10:24.069+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T10:10:27.028+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:20 DtypeWarning: Columns (0,1,3,4,5,6,7,10,11,12,13,14,15) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T10:10:29.030+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:21 DtypeWarning: Columns (0,1,2,3,4) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T10:10:34.018+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:24 FutureWarning: In a future version of pandas, parsing datetimes with mixed time zones will raise an error unless `utc=True`. Please specify `utc=True` to opt in to the new behaviour and silence this warning. To create a `Series` with mixed offsets and `object` dtype, please use `apply` and `datetime.datetime.strptime`
+[2026-05-12T10:10:34.643+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T10:10:34.644+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3791, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 152, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 181, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Loan Id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 29, in run_cleaning
+    dob_data["Loan Id "] = dob_data["Loan Id"]
+                           ~~~~~~~~^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 3893, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3798, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Loan Id'
+[2026-05-12T10:10:34.676+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T101023, end_date=20260512T101034
+[2026-05-12T10:10:34.693+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 43 for task clean_data ('Loan Id'; 535)
+[2026-05-12T10:10:34.786+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T10:10:34.826+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T10:10:34.830+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T10:28:10.497+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T10:28:10.580+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T10:28:10.591+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T10:28:10.592+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T10:28:10.610+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T10:28:10.623+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '47', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpl_7mvlww']
+[2026-05-12T10:28:10.637+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=622) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T10:28:10.639+0000] {standard_task_runner.py:64} INFO - Started process 627 to run task
+[2026-05-12T10:28:10.638+0000] {standard_task_runner.py:91} INFO - Job 47: Subtask clean_data
+[2026-05-12T10:28:10.748+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T10:28:10.883+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T10:28:10.884+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T10:28:13.877+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:20 DtypeWarning: Columns (0,1,3,4,5,6,7,10,11,12,13,14,15) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T10:28:15.918+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:21 DtypeWarning: Columns (0,1,2,3,4) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T10:28:16.416+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:22 DtypeWarning: Columns (0,1,2) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T10:28:17.369+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:23 DtypeWarning: Columns (0) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T10:28:23.617+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:26 FutureWarning: In a future version of pandas, parsing datetimes with mixed time zones will raise an error unless `utc=True`. Please specify `utc=True` to opt in to the new behaviour and silence this warning. To create a `Series` with mixed offsets and `object` dtype, please use `apply` and `datetime.datetime.strptime`
+[2026-05-12T10:30:13.299+0000] {local_task_job_runner.py:243} INFO - Task exited with return code -9For more information, see https://airflow.apache.org/docs/apache-airflow/stable/troubleshooting.html#LocalTaskJob-killed
+[2026-05-12T10:30:14.043+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T10:30:14.050+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T10:45:56.021+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T10:45:56.090+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T10:45:56.108+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T10:45:56.109+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T10:45:56.146+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T10:45:56.162+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '52', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpbnzlk320']
+[2026-05-12T10:45:56.167+0000] {standard_task_runner.py:91} INFO - Job 52: Subtask clean_data
+[2026-05-12T10:45:56.167+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=720) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T10:45:56.170+0000] {standard_task_runner.py:64} INFO - Started process 725 to run task
+[2026-05-12T10:45:56.256+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T10:45:56.395+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T10:45:56.397+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T10:46:01.305+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:20 DtypeWarning: Columns (0,1,3,4,5,6,7,10,11,12,13,14,15) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T10:46:03.908+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:21 DtypeWarning: Columns (0,1,2,3,4) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T10:46:04.385+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:22 DtypeWarning: Columns (0,1,2) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T10:46:05.036+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:23 DtypeWarning: Columns (0) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T10:46:09.093+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:26 FutureWarning: In a future version of pandas, parsing datetimes with mixed time zones will raise an error unless `utc=True`. Please specify `utc=True` to opt in to the new behaviour and silence this warning. To create a `Series` with mixed offsets and `object` dtype, please use `apply` and `datetime.datetime.strptime`
+[2026-05-12T10:46:46.615+0000] {local_task_job_runner.py:243} INFO - Task exited with return code -9For more information, see https://airflow.apache.org/docs/apache-airflow/stable/troubleshooting.html#LocalTaskJob-killed
+[2026-05-12T10:46:48.124+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T10:46:48.137+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T11:19:07.580+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T11:19:07.625+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T11:19:07.636+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T11:19:07.637+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T11:19:07.656+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T11:19:07.668+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '57', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmp80u00koc']
+[2026-05-12T11:19:07.671+0000] {standard_task_runner.py:91} INFO - Job 57: Subtask clean_data
+[2026-05-12T11:19:07.671+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=82) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T11:19:07.673+0000] {standard_task_runner.py:64} INFO - Started process 89 to run task
+[2026-05-12T11:19:07.756+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T11:19:07.898+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T11:19:07.903+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T11:19:12.303+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:20 DtypeWarning: Columns (0,1,3,4,5,6,7,10,11,12,13,14,15) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T11:19:13.965+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:21 DtypeWarning: Columns (0,1,2,3,4) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T11:19:14.455+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:22 DtypeWarning: Columns (0,1,2) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T11:19:15.071+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:23 DtypeWarning: Columns (0) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T11:19:19.666+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:26 FutureWarning: In a future version of pandas, parsing datetimes with mixed time zones will raise an error unless `utc=True`. Please specify `utc=True` to opt in to the new behaviour and silence this warning. To create a `Series` with mixed offsets and `object` dtype, please use `apply` and `datetime.datetime.strptime`
+[2026-05-12T11:20:41.132+0000] {local_task_job_runner.py:243} INFO - Task exited with return code -9For more information, see https://airflow.apache.org/docs/apache-airflow/stable/troubleshooting.html#LocalTaskJob-killed
+[2026-05-12T11:20:43.110+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T11:20:43.555+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T11:42:58.149+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T11:42:58.191+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T11:42:58.200+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T11:42:58.201+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T11:42:58.218+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T11:42:58.230+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '62', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmp625wijyx']
+[2026-05-12T11:42:58.234+0000] {standard_task_runner.py:91} INFO - Job 62: Subtask clean_data
+[2026-05-12T11:42:58.234+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=206) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T11:42:58.236+0000] {standard_task_runner.py:64} INFO - Started process 211 to run task
+[2026-05-12T11:42:58.318+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T11:42:58.458+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T11:42:58.462+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T11:43:02.968+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:24 DtypeWarning: Columns (0,1,3,4,5,6,7,10,11,12,13,14,15) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T11:43:04.961+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:25 DtypeWarning: Columns (0,1,2,3,4) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T11:43:05.502+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:26 DtypeWarning: Columns (0,1,2) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T11:43:05.960+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:27 DtypeWarning: Columns (0) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T11:43:10.688+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:35 FutureWarning: In a future version of pandas, parsing datetimes with mixed time zones will raise an error unless `utc=True`. Please specify `utc=True` to opt in to the new behaviour and silence this warning. To create a `Series` with mixed offsets and `object` dtype, please use `apply` and `datetime.datetime.strptime`
+[2026-05-12T11:43:10.715+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T11:43:10.716+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3791, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 152, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 181, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'SALE_DATE'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 36, in run_cleaning
+    sales_details['SALE_DATE'] = pd.to_datetime(sales_details['SALE_DATE'], errors='coerce')
+                                                ~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 3893, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3798, in get_loc
+    raise KeyError(key) from err
+KeyError: 'SALE_DATE'
+[2026-05-12T11:43:10.747+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T114258, end_date=20260512T114310
+[2026-05-12T11:43:10.764+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 62 for task clean_data ('SALE_DATE'; 211)
+[2026-05-12T11:43:10.933+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T11:43:10.971+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T11:43:10.975+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T11:55:32.845+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T11:55:32.926+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T11:55:32.944+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T11:55:32.945+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T11:55:32.996+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T11:55:33.019+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '68', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpgt2veglx']
+[2026-05-12T11:55:33.034+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=290) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T11:55:33.037+0000] {standard_task_runner.py:91} INFO - Job 68: Subtask clean_data
+[2026-05-12T11:55:33.038+0000] {standard_task_runner.py:64} INFO - Started process 295 to run task
+[2026-05-12T11:55:33.225+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T11:55:33.476+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T11:55:33.477+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T11:55:38.022+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:24 DtypeWarning: Columns (0,1,3,4,5,6,7,10,11,12,13,14,15) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T11:55:39.861+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:25 DtypeWarning: Columns (0,1,2,3,4) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T11:55:40.609+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:26 DtypeWarning: Columns (0,1,2) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T11:55:41.099+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:27 DtypeWarning: Columns (0) have mixed types. Specify dtype option on import or set low_memory=False.
+[2026-05-12T11:55:44.576+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:35 FutureWarning: In a future version of pandas, parsing datetimes with mixed time zones will raise an error unless `utc=True`. Please specify `utc=True` to opt in to the new behaviour and silence this warning. To create a `Series` with mixed offsets and `object` dtype, please use `apply` and `datetime.datetime.strptime`
+[2026-05-12T11:55:45.215+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T11:55:45.216+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 41, in run_cleaning
+    dob_data = dob_data.astype({"Loan Id": "loan_id"})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/generic.py", line 6498, in astype
+    raise KeyError(
+KeyError: "Only a column name can be used for the key in a dtype mappings argument. 'Loan Id' not found in columns."
+[2026-05-12T11:55:45.250+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T115532, end_date=20260512T115545
+[2026-05-12T11:55:45.286+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 68 for task clean_data ("Only a column name can be used for the key in a dtype mappings argument. 'Loan Id' not found in columns."; 295)
+[2026-05-12T11:55:45.393+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T11:55:45.427+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T11:55:45.431+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T12:35:35.563+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T12:35:35.615+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T12:35:35.627+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T12:35:35.628+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T12:35:35.646+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T12:35:35.662+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '75', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpyp1vu_fz']
+[2026-05-12T12:35:35.666+0000] {standard_task_runner.py:91} INFO - Job 75: Subtask clean_data
+[2026-05-12T12:35:35.669+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=486) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T12:35:35.670+0000] {standard_task_runner.py:64} INFO - Started process 491 to run task
+[2026-05-12T12:35:35.833+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T12:35:36.053+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T12:35:36.055+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T12:35:36.514+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T12:35:36.515+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 118, in run_cleaning
+    credit_data = pd.read_csv("/opt/airflow/data/silver/credit_raw.csv", low_memory=False, dtype=SCHEMA)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 948, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 617, in _read
+    return parser.read(nrows)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1748, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 239, in read
+    data = self._reader.read(nrows)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "parsers.pyx", line 825, in pandas._libs.parsers.TextReader.read
+  File "parsers.pyx", line 920, in pandas._libs.parsers.TextReader._read_rows
+  File "parsers.pyx", line 1065, in pandas._libs.parsers.TextReader._convert_column_data
+  File "parsers.pyx", line 1104, in pandas._libs.parsers.TextReader._convert_tokens
+  File "parsers.pyx", line 1274, in pandas._libs.parsers.TextReader._convert_with_dtype
+TypeError: the dtype datetime64[ns] is not supported for parsing, pass this column using parse_dates instead
+[2026-05-12T12:35:36.543+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T123535, end_date=20260512T123536
+[2026-05-12T12:35:36.565+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 75 for task clean_data (the dtype datetime64[ns] is not supported for parsing, pass this column using parse_dates instead; 491)
+[2026-05-12T12:35:36.610+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T12:35:36.641+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T12:35:36.645+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T12:46:15.780+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T12:46:15.865+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T12:46:15.880+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T12:46:15.881+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T12:46:15.905+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T12:46:15.921+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '78', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmp67fd5c0p']
+[2026-05-12T12:46:15.926+0000] {standard_task_runner.py:91} INFO - Job 78: Subtask clean_data
+[2026-05-12T12:46:15.927+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=549) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T12:46:15.929+0000] {standard_task_runner.py:64} INFO - Started process 554 to run task
+[2026-05-12T12:46:16.036+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T12:46:16.230+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T12:46:16.233+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T12:46:19.959+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T12:46:19.961+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "lib.pyx", line 2374, in pandas._libs.lib.maybe_convert_numeric
+ValueError: Unable to parse string "12M"
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 131, in run_cleaning
+    sales_details = pd.read_csv("/opt/airflow/data/silver/sales_details.csv", low_memory=False, dtype=SCHEMA)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 948, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 617, in _read
+    return parser.read(nrows)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1748, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 239, in read
+    data = self._reader.read(nrows)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "parsers.pyx", line 825, in pandas._libs.parsers.TextReader.read
+  File "parsers.pyx", line 920, in pandas._libs.parsers.TextReader._read_rows
+  File "parsers.pyx", line 1065, in pandas._libs.parsers.TextReader._convert_column_data
+  File "parsers.pyx", line 1104, in pandas._libs.parsers.TextReader._convert_tokens
+  File "parsers.pyx", line 1210, in pandas._libs.parsers.TextReader._convert_with_dtype
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/arrays/numeric.py", line 275, in _from_sequence_of_strings
+    scalars = to_numeric(strings, errors="raise", dtype_backend="numpy_nullable")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/tools/numeric.py", line 222, in to_numeric
+    values, new_mask = lib.maybe_convert_numeric(  # type: ignore[call-overload]  # noqa: E501
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "lib.pyx", line 2416, in pandas._libs.lib.maybe_convert_numeric
+ValueError: Unable to parse string "12M" at position 0
+[2026-05-12T12:46:19.990+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T124615, end_date=20260512T124619
+[2026-05-12T12:46:20.007+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 78 for task clean_data (Unable to parse string "12M" at position 0; 554)
+[2026-05-12T12:46:20.041+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T12:46:20.084+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T12:46:20.089+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T12:54:23.995+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T12:54:24.110+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T12:54:24.145+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T12:54:24.148+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T12:54:24.217+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T12:54:24.237+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '83', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpzjf1tffy']
+[2026-05-12T12:54:24.254+0000] {standard_task_runner.py:91} INFO - Job 83: Subtask clean_data
+[2026-05-12T12:54:24.274+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=609) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T12:54:24.279+0000] {standard_task_runner.py:64} INFO - Started process 616 to run task
+[2026-05-12T12:54:24.418+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T12:54:24.606+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T12:54:24.609+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T12:54:30.812+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T12:54:30.813+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 132, in run_cleaning
+    dob_data = pd.read_csv("/opt/airflow/data/silver/dob_data.csv", low_memory=False, dtype=SCHEMA)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 948, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 617, in _read
+    return parser.read(nrows)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1748, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 239, in read
+    data = self._reader.read(nrows)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "parsers.pyx", line 825, in pandas._libs.parsers.TextReader.read
+  File "parsers.pyx", line 920, in pandas._libs.parsers.TextReader._read_rows
+  File "parsers.pyx", line 1065, in pandas._libs.parsers.TextReader._convert_column_data
+  File "parsers.pyx", line 1104, in pandas._libs.parsers.TextReader._convert_tokens
+  File "parsers.pyx", line 1274, in pandas._libs.parsers.TextReader._convert_with_dtype
+TypeError: the dtype datetime64[ns] is not supported for parsing, pass this column using parse_dates instead
+[2026-05-12T12:54:30.847+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T125424, end_date=20260512T125430
+[2026-05-12T12:54:30.869+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 83 for task clean_data (the dtype datetime64[ns] is not supported for parsing, pass this column using parse_dates instead; 616)
+[2026-05-12T12:54:30.978+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T12:54:31.030+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T12:54:31.035+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T13:01:25.548+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T13:01:25.597+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T13:01:25.612+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T13:01:25.613+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T13:01:25.640+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T13:01:25.661+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '87', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpczpv_4n1']
+[2026-05-12T13:01:25.669+0000] {standard_task_runner.py:91} INFO - Job 87: Subtask clean_data
+[2026-05-12T13:01:25.675+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=661) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T13:01:25.678+0000] {standard_task_runner.py:64} INFO - Started process 666 to run task
+[2026-05-12T13:01:25.796+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T13:01:25.944+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T13:01:25.946+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T13:01:38.843+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:142 FutureWarning: In a future version of pandas, parsing datetimes with mixed time zones will raise an error unless `utc=True`. Please specify `utc=True` to opt in to the new behaviour and silence this warning. To create a `Series` with mixed offsets and `object` dtype, please use `apply` and `datetime.datetime.strptime`
+[2026-05-12T13:01:39.293+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T13:01:39.294+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 148, in run_cleaning
+    dob_data = dob_data.astype({"Loan Id": "loan_id"})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/generic.py", line 6498, in astype
+    raise KeyError(
+KeyError: "Only a column name can be used for the key in a dtype mappings argument. 'Loan Id' not found in columns."
+[2026-05-12T13:01:39.317+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T130125, end_date=20260512T130139
+[2026-05-12T13:01:39.344+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 87 for task clean_data ("Only a column name can be used for the key in a dtype mappings argument. 'Loan Id' not found in columns."; 666)
+[2026-05-12T13:01:39.404+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T13:01:39.435+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T13:01:39.440+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T13:16:04.051+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T13:16:04.103+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T13:16:04.117+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T13:16:04.118+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T13:16:04.161+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T13:16:04.175+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '93', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpu33w61g3']
+[2026-05-12T13:16:04.179+0000] {standard_task_runner.py:91} INFO - Job 93: Subtask clean_data
+[2026-05-12T13:16:04.180+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=753) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T13:16:04.181+0000] {standard_task_runner.py:64} INFO - Started process 758 to run task
+[2026-05-12T13:16:04.280+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T13:16:04.478+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T13:16:04.481+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T13:16:16.097+0000] {logging_mixin.py:188} WARNING - /opt/airflow/scripts/clean.py:142 FutureWarning: In a future version of pandas, parsing datetimes with mixed time zones will raise an error unless `utc=True`. Please specify `utc=True` to opt in to the new behaviour and silence this warning. To create a `Series` with mixed offsets and `object` dtype, please use `apply` and `datetime.datetime.strptime`
+[2026-05-12T13:17:33.359+0000] {local_task_job_runner.py:243} INFO - Task exited with return code -9For more information, see https://airflow.apache.org/docs/apache-airflow/stable/troubleshooting.html#LocalTaskJob-killed
+[2026-05-12T13:17:34.199+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T13:17:34.226+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T13:36:23.266+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T13:36:23.349+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T13:36:23.366+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T13:36:23.367+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T13:36:23.390+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T13:36:23.405+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '101', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmp2xdopsou']
+[2026-05-12T13:36:23.414+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=875) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T13:36:23.415+0000] {standard_task_runner.py:91} INFO - Job 101: Subtask clean_data
+[2026-05-12T13:36:23.416+0000] {standard_task_runner.py:64} INFO - Started process 880 to run task
+[2026-05-12T13:36:23.515+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T13:36:23.735+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T13:36:23.740+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T13:38:10.712+0000] {local_task_job_runner.py:243} INFO - Task exited with return code -9For more information, see https://airflow.apache.org/docs/apache-airflow/stable/troubleshooting.html#LocalTaskJob-killed
+[2026-05-12T13:38:11.378+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T13:38:11.399+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T13:49:17.756+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T13:49:17.820+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T13:49:17.835+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T13:49:17.836+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T13:49:17.861+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T13:49:17.879+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '105', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmp66owa8vm']
+[2026-05-12T13:49:17.884+0000] {standard_task_runner.py:91} INFO - Job 105: Subtask clean_data
+[2026-05-12T13:49:17.889+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=945) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T13:49:17.893+0000] {standard_task_runner.py:64} INFO - Started process 950 to run task
+[2026-05-12T13:49:18.016+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T13:49:18.207+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T13:49:18.208+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T13:49:33.783+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T13:49:33.784+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 190, in run_cleaning
+    sales_data = sales_data.drop_duplicates(subset=['customer_id'])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 6566, in drop_duplicates
+    result = self[-self.duplicated(subset, keep=keep)]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 6698, in duplicated
+    raise KeyError(Index(diff))
+KeyError: Index(['customer_id'], dtype='object')
+[2026-05-12T13:49:33.820+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T134917, end_date=20260512T134933
+[2026-05-12T13:49:33.841+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 105 for task clean_data (Index(['customer_id'], dtype='object'); 950)
+[2026-05-12T13:49:33.941+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T13:49:33.984+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T13:49:33.987+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T14:00:01.265+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T14:00:01.333+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T14:00:01.348+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T14:00:01.349+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T14:00:01.375+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T14:00:01.389+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '110', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmptjss_exa']
+[2026-05-12T14:00:01.393+0000] {standard_task_runner.py:91} INFO - Job 110: Subtask clean_data
+[2026-05-12T14:00:01.393+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1015) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T14:00:01.395+0000] {standard_task_runner.py:64} INFO - Started process 1020 to run task
+[2026-05-12T14:00:01.500+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T14:00:01.654+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T14:00:01.656+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T14:00:15.587+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T14:00:15.588+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 190, in run_cleaning
+    sales_data = sales_data.drop_duplicates(subset=['customer_id'])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 6566, in drop_duplicates
+    result = self[-self.duplicated(subset, keep=keep)]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 6698, in duplicated
+    raise KeyError(Index(diff))
+KeyError: Index(['customer_id'], dtype='object')
+[2026-05-12T14:00:15.611+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T140001, end_date=20260512T140015
+[2026-05-12T14:00:15.630+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 110 for task clean_data (Index(['customer_id'], dtype='object'); 1020)
+[2026-05-12T14:00:15.694+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T14:00:15.724+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T14:00:15.728+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T14:15:32.651+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T14:15:32.704+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T14:15:32.714+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T14:15:32.716+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T14:15:32.739+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T14:15:32.755+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '118', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpbv2xft4z']
+[2026-05-12T14:15:32.758+0000] {standard_task_runner.py:91} INFO - Job 118: Subtask clean_data
+[2026-05-12T14:15:32.760+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1123) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T14:15:32.765+0000] {standard_task_runner.py:64} INFO - Started process 1128 to run task
+[2026-05-12T14:15:32.858+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T14:15:33.220+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T14:15:33.224+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T14:15:47.366+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-12T14:15:47.367+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T14:15:47.381+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T141532, end_date=20260512T141547
+[2026-05-12T14:15:47.447+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-12T14:15:47.495+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T14:15:47.500+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T14:54:08.648+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T14:54:08.725+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T14:54:08.738+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T14:54:08.739+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T14:54:08.760+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T14:54:08.779+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '128', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpzfw20v1n']
+[2026-05-12T14:54:08.784+0000] {standard_task_runner.py:91} INFO - Job 128: Subtask clean_data
+[2026-05-12T14:54:08.789+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1341) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T14:54:08.791+0000] {standard_task_runner.py:64} INFO - Started process 1346 to run task
+[2026-05-12T14:54:08.884+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T14:54:09.037+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T14:54:09.039+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T14:54:09.923+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T14:54:09.924+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 21, in run_cleaning
+    credit_data.to_csv("/opt/airflow/data/gold/credit_cleaned.csv", index=False)
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/generic.py", line 3902, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/formats/format.py", line 1152, in to_csv
+    csv_formatter.save()
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 247, in save
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/common.py", line 863, in get_handle
+    handle = open(
+             ^^^^^
+PermissionError: [Errno 13] Permission denied: '/opt/airflow/data/gold/credit_cleaned.csv'
+[2026-05-12T14:54:09.951+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T145408, end_date=20260512T145409
+[2026-05-12T14:54:09.968+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 128 for task clean_data ([Errno 13] Permission denied: '/opt/airflow/data/gold/credit_cleaned.csv'; 1346)
+[2026-05-12T14:54:10.011+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T14:54:10.044+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T14:54:10.048+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T15:08:29.669+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T15:08:29.719+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T15:08:29.731+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T15:08:29.732+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T15:08:29.756+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T15:08:29.771+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '137', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpsbn1rc2j']
+[2026-05-12T15:08:29.775+0000] {standard_task_runner.py:91} INFO - Job 137: Subtask clean_data
+[2026-05-12T15:08:29.780+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1451) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T15:08:29.781+0000] {standard_task_runner.py:64} INFO - Started process 1458 to run task
+[2026-05-12T15:08:29.899+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T15:08:30.077+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T15:08:30.079+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T15:08:45.658+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-12T15:08:45.660+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T15:08:45.677+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T150829, end_date=20260512T150845
+[2026-05-12T15:08:45.775+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-12T15:08:45.802+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T15:08:45.807+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T15:19:22.954+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T15:19:22.996+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T15:19:23.006+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T15:19:23.007+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T15:19:23.026+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T15:19:23.037+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '144', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmps9u3ut6v']
+[2026-05-12T15:19:23.041+0000] {standard_task_runner.py:91} INFO - Job 144: Subtask clean_data
+[2026-05-12T15:19:23.043+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1535) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T15:19:23.044+0000] {standard_task_runner.py:64} INFO - Started process 1540 to run task
+[2026-05-12T15:19:23.113+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T15:19:23.243+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T15:19:23.246+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T15:19:39.359+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-12T15:19:39.360+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T15:19:39.392+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T151922, end_date=20260512T151939
+[2026-05-12T15:19:39.516+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-12T15:19:39.552+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T15:19:39.557+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-12T15:34:08.860+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T15:34:09.045+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T15:34:09.096+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [queued]>
+[2026-05-12T15:34:09.108+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T15:34:09.200+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-11 00:00:00+00:00
+[2026-05-12T15:34:09.246+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'scheduled__2026-05-11T00:00:00+00:00', '--job-id', '152', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmp_l5jto3l']
+[2026-05-12T15:34:09.276+0000] {standard_task_runner.py:91} INFO - Job 152: Subtask clean_data
+[2026-05-12T15:34:09.281+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1639) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T15:34:09.392+0000] {standard_task_runner.py:64} INFO - Started process 1644 to run task
+[2026-05-12T15:34:09.610+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data scheduled__2026-05-11T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-12T15:34:10.292+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-11T00:00:00+00:00'
+[2026-05-12T15:34:10.298+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T15:34:30.117+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-12T15:34:30.123+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T15:34:30.172+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=scheduled__2026-05-11T00:00:00+00:00, execution_date=20260511T000000, start_date=20260512T153409, end_date=20260512T153430
+[2026-05-12T15:34:30.287+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-12T15:34:30.328+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T15:34:30.333+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

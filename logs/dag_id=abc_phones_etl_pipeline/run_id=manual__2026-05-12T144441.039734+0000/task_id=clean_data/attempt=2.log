@@ -1,0 +1,49 @@
+[2026-05-12T14:56:25.001+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T14:56:25.043+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data manual__2026-05-12T14:44:41.039734+00:00 [queued]>
+[2026-05-12T14:56:25.053+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.clean_data manual__2026-05-12T14:44:41.039734+00:00 [queued]>
+[2026-05-12T14:56:25.055+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2026-05-12T14:56:25.072+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): clean_data> on 2026-05-12 14:44:41.039734+00:00
+[2026-05-12T14:56:25.082+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'clean_data', 'manual__2026-05-12T14:44:41.039734+00:00', '--job-id', '129', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpic1rs5w5']
+[2026-05-12T14:56:25.085+0000] {standard_task_runner.py:91} INFO - Job 129: Subtask clean_data
+[2026-05-12T14:56:25.085+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1358) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T14:56:25.086+0000] {standard_task_runner.py:64} INFO - Started process 1363 to run task
+[2026-05-12T14:56:25.172+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.clean_data manual__2026-05-12T14:44:41.039734+00:00 [running]> on host 87c449af332c
+[2026-05-12T14:56:25.365+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='clean_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T14:44:41.039734+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-12T14:44:41.039734+00:00'
+[2026-05-12T14:56:25.367+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T14:56:26.234+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T14:56:26.235+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/clean.py", line 21, in run_cleaning
+    credit_data.to_csv("/opt/airflow/data/gold/credit_cleaned.csv", index=False)
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/generic.py", line 3902, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/formats/format.py", line 1152, in to_csv
+    csv_formatter.save()
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 247, in save
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/common.py", line 863, in get_handle
+    handle = open(
+             ^^^^^
+PermissionError: [Errno 13] Permission denied: '/opt/airflow/data/gold/credit_cleaned.csv'
+[2026-05-12T14:56:26.272+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=abc_phones_etl_pipeline, task_id=clean_data, run_id=manual__2026-05-12T14:44:41.039734+00:00, execution_date=20260512T144441, start_date=20260512T145625, end_date=20260512T145626
+[2026-05-12T14:56:26.287+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 129 for task clean_data ([Errno 13] Permission denied: '/opt/airflow/data/gold/credit_cleaned.csv'; 1363)
+[2026-05-12T14:56:26.306+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T14:56:26.335+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T14:56:26.343+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

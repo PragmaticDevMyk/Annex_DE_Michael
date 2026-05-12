@@ -1,0 +1,80 @@
+[2026-05-12T15:19:17.009+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-12T15:19:17.109+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.feature_engineering manual__2026-05-12T15:12:55.122322+00:00 [queued]>
+[2026-05-12T15:19:17.131+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.feature_engineering manual__2026-05-12T15:12:55.122322+00:00 [queued]>
+[2026-05-12T15:19:17.132+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-12T15:19:17.175+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): feature_engineering> on 2026-05-12 15:12:55.122322+00:00
+[2026-05-12T15:19:17.195+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'feature_engineering', 'manual__2026-05-12T15:12:55.122322+00:00', '--job-id', '143', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmp3u7cqk2v']
+[2026-05-12T15:19:17.201+0000] {standard_task_runner.py:91} INFO - Job 143: Subtask feature_engineering
+[2026-05-12T15:19:17.204+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1529) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-12T15:19:17.206+0000] {standard_task_runner.py:64} INFO - Started process 1534 to run task
+[2026-05-12T15:19:17.308+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.feature_engineering manual__2026-05-12T15:12:55.122322+00:00 [running]> on host 87c449af332c
+[2026-05-12T15:19:17.432+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='feature_engineering' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T15:12:55.122322+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-12T15:12:55.122322+00:00'
+[2026-05-12T15:19:17.433+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-12T15:19:17.941+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-12T15:19:17.942+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/arrays/datetimelike.py", line 1125, in _sub_datetimelike
+    self._assert_tzawareness_compat(other)
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/arrays/datetimes.py", line 774, in _assert_tzawareness_compat
+    raise TypeError(
+TypeError: Cannot compare tz-naive and tz-aware datetime-like objects
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/feature_engineering.py", line 8, in run_feature_engineering
+    sales_data['age'] = (pd.to_datetime(credit_data['date']).max() - pd.to_datetime(sales_data['date_of_birth'])).dt.days // 365
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/ops/common.py", line 76, in new_method
+    return method(self, other)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/arraylike.py", line 198, in __rsub__
+    return self._arith_method(other, roperator.rsub)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/series.py", line 5819, in _arith_method
+    return base.IndexOpsMixin._arith_method(self, other, op)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/base.py", line 1381, in _arith_method
+    result = ops.arithmetic_op(lvalues, rvalues, op)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/ops/array_ops.py", line 275, in arithmetic_op
+    res_values = op(left, right)
+                 ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/roperator.py", line 15, in rsub
+    return right - left
+           ~~~~~~^~~~~~
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/arrays/datetimelike.py", line 1476, in __rsub__
+    return -(self - other)
+             ~~~~~^~~~~~~
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/ops/common.py", line 76, in new_method
+    return method(self, other)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/arrays/datetimelike.py", line 1402, in __sub__
+    result = self._sub_datetimelike_scalar(other)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/arrays/datetimelike.py", line 1103, in _sub_datetimelike_scalar
+    return self._sub_datetimelike(ts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/arrays/datetimelike.py", line 1128, in _sub_datetimelike
+    raise type(err)(new_message) from err
+TypeError: Cannot subtract tz-naive and tz-aware datetime-like objects
+[2026-05-12T15:19:17.975+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=abc_phones_etl_pipeline, task_id=feature_engineering, run_id=manual__2026-05-12T15:12:55.122322+00:00, execution_date=20260512T151255, start_date=20260512T151917, end_date=20260512T151917
+[2026-05-12T15:19:17.992+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 143 for task feature_engineering (Cannot subtract tz-naive and tz-aware datetime-like objects; 1534)
+[2026-05-12T15:19:18.024+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 1
+[2026-05-12T15:19:18.055+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-05-12T15:19:18.060+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
