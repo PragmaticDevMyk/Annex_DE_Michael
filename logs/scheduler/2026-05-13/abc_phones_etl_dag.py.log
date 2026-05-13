@@ -215,3 +215,38 @@
 [2026-05-13T11:54:05.603+0000] {logging_mixin.py:188} INFO - [2026-05-13T11:54:05.602+0000] {dag.py:3089} INFO - Sync 1 DAGs
 [2026-05-13T11:54:05.632+0000] {logging_mixin.py:188} INFO - [2026-05-13T11:54:05.631+0000] {dag.py:3947} INFO - Setting next_dagrun for abc_phones_etl_pipeline to 2026-05-13 00:00:00+00:00, run_after=2026-05-14 00:00:00+00:00
 [2026-05-13T11:54:05.658+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/abc_phones_etl_dag.py took 0.783 seconds
+[2026-05-13T14:10:17.398+0000] {processor.py:161} INFO - Started process (PID=826) to work on /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:10:17.400+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/abc_phones_etl_dag.py for tasks to queue
+[2026-05-13T14:10:17.406+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:10:17.405+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:10:20.365+0000] {processor.py:840} INFO - DAG(s) 'abc_phones_etl_pipeline' retrieved from /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:10:21.063+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:10:21.052+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-13T14:10:21.161+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:10:21.161+0000] {dag.py:3947} INFO - Setting next_dagrun for abc_phones_etl_pipeline to 2026-05-13 00:00:00+00:00, run_after=2026-05-14 00:00:00+00:00
+[2026-05-13T14:10:21.380+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/abc_phones_etl_dag.py took 4.000 seconds
+[2026-05-13T14:10:51.722+0000] {processor.py:161} INFO - Started process (PID=828) to work on /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:10:51.724+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/abc_phones_etl_dag.py for tasks to queue
+[2026-05-13T14:10:51.726+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:10:51.726+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:10:52.325+0000] {processor.py:840} INFO - DAG(s) 'abc_phones_etl_pipeline' retrieved from /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:10:52.358+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:10:52.357+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-13T14:10:52.382+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:10:52.382+0000] {dag.py:3947} INFO - Setting next_dagrun for abc_phones_etl_pipeline to 2026-05-13 00:00:00+00:00, run_after=2026-05-14 00:00:00+00:00
+[2026-05-13T14:10:52.411+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/abc_phones_etl_dag.py took 0.699 seconds
+[2026-05-13T14:11:22.628+0000] {processor.py:161} INFO - Started process (PID=830) to work on /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:11:22.630+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/abc_phones_etl_dag.py for tasks to queue
+[2026-05-13T14:11:22.632+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:11:22.632+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:11:23.392+0000] {processor.py:840} INFO - DAG(s) 'abc_phones_etl_pipeline' retrieved from /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:11:23.425+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:11:23.425+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-13T14:11:23.449+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:11:23.449+0000] {dag.py:3947} INFO - Setting next_dagrun for abc_phones_etl_pipeline to 2026-05-13 00:00:00+00:00, run_after=2026-05-14 00:00:00+00:00
+[2026-05-13T14:11:23.474+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/abc_phones_etl_dag.py took 0.855 seconds
+[2026-05-13T14:11:53.861+0000] {processor.py:161} INFO - Started process (PID=832) to work on /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:11:53.862+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/abc_phones_etl_dag.py for tasks to queue
+[2026-05-13T14:11:53.865+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:11:53.864+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:11:54.658+0000] {processor.py:840} INFO - DAG(s) 'abc_phones_etl_pipeline' retrieved from /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:11:54.702+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:11:54.702+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-13T14:11:54.728+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:11:54.728+0000] {dag.py:3947} INFO - Setting next_dagrun for abc_phones_etl_pipeline to 2026-05-13 00:00:00+00:00, run_after=2026-05-14 00:00:00+00:00
+[2026-05-13T14:11:54.757+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/abc_phones_etl_dag.py took 0.907 seconds
+[2026-05-13T14:12:20.999+0000] {processor.py:161} INFO - Started process (PID=834) to work on /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:12:21.001+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/abc_phones_etl_dag.py for tasks to queue
+[2026-05-13T14:12:21.003+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:12:21.003+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:12:21.836+0000] {processor.py:840} INFO - DAG(s) 'abc_phones_etl_pipeline' retrieved from /opt/airflow/dags/abc_phones_etl_dag.py
+[2026-05-13T14:12:21.889+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:12:21.888+0000] {dag.py:3089} INFO - Sync 1 DAGs
+[2026-05-13T14:12:21.940+0000] {logging_mixin.py:188} INFO - [2026-05-13T14:12:21.939+0000] {dag.py:3947} INFO - Setting next_dagrun for abc_phones_etl_pipeline to 2026-05-13 00:00:00+00:00, run_after=2026-05-14 00:00:00+00:00
+[2026-05-13T14:12:21.997+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/abc_phones_etl_dag.py took 1.007 seconds

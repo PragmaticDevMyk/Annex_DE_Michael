@@ -17,10 +17,6 @@ def run_ingestion():
 
     credit_data = pd.concat(chunks, ignore_index=True)
 
-    # credit_dfs = [pd.read_csv(file) for file in credit_files]
-    # credit_data = pd.concat(credit_dfs, ignore_index=True)
-
-
     sales_sheets = pd.read_excel("/opt/airflow/data/bronze/SalesandCustomerData.xlsx", sheet_name=None, engine="openpyxl")
     sales_details = sales_sheets['Sales Details']
     dob_data = sales_sheets["DOB"]
