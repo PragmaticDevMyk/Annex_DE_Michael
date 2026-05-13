@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 from scripts.profile_data import profile_data
 
 def run_ingestion():
@@ -24,7 +25,12 @@ def run_ingestion():
     income_data = sales_sheets["Income Level"]
     nps_data = pd.read_excel("/opt/airflow/data/bronze/NPS_Data.xlsx", engine="openpyxl")
 
+    file_path = "/opt/airflow/outputs/data_quality_report.md"
 
+    # Check if file exists, then remove it
+    if os.path.exists(file_path):
+        os.remove(file_path)
+        
     profile_data(sales_details)
     profile_data(dob_data)
     profile_data(gender_data)

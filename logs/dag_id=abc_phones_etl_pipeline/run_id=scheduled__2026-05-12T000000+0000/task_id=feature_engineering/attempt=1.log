@@ -16,3 +16,39 @@
 [2026-05-13T11:49:39.264+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
 [2026-05-13T11:49:39.294+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
 [2026-05-13T11:49:39.299+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-13T15:52:46.321+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-13T15:52:46.369+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.feature_engineering scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:52:46.378+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.feature_engineering scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:52:46.379+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-13T15:52:46.396+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): feature_engineering> on 2026-05-12 00:00:00+00:00
+[2026-05-13T15:52:46.406+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'feature_engineering', 'scheduled__2026-05-12T00:00:00+00:00', '--job-id', '209', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpswl3_n_7']
+[2026-05-13T15:52:46.410+0000] {standard_task_runner.py:91} INFO - Job 209: Subtask feature_engineering
+[2026-05-13T15:52:46.410+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1336) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-13T15:52:46.412+0000] {standard_task_runner.py:64} INFO - Started process 1343 to run task
+[2026-05-13T15:52:46.497+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.feature_engineering scheduled__2026-05-12T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-13T15:52:46.663+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='feature_engineering' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-12T00:00:00+00:00'
+[2026-05-13T15:52:46.665+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-13T15:52:48.787+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-13T15:52:48.788+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-13T15:52:48.805+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=abc_phones_etl_pipeline, task_id=feature_engineering, run_id=scheduled__2026-05-12T00:00:00+00:00, execution_date=20260512T000000, start_date=20260513T155246, end_date=20260513T155248
+[2026-05-13T15:52:48.836+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-13T15:52:48.865+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-13T15:52:48.871+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-13T16:36:47.176+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-13T16:36:47.287+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.feature_engineering scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T16:36:47.309+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.feature_engineering scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T16:36:47.310+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-13T16:36:47.334+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): feature_engineering> on 2026-05-12 00:00:00+00:00
+[2026-05-13T16:36:47.350+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'feature_engineering', 'scheduled__2026-05-12T00:00:00+00:00', '--job-id', '221', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpq76nj7j9']
+[2026-05-13T16:36:47.354+0000] {standard_task_runner.py:91} INFO - Job 221: Subtask feature_engineering
+[2026-05-13T16:36:47.362+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1578) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-13T16:36:47.364+0000] {standard_task_runner.py:64} INFO - Started process 1583 to run task
+[2026-05-13T16:36:47.493+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.feature_engineering scheduled__2026-05-12T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-13T16:36:47.736+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='feature_engineering' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-12T00:00:00+00:00'
+[2026-05-13T16:36:47.738+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-13T16:36:50.548+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-13T16:36:50.549+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-13T16:36:50.569+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=abc_phones_etl_pipeline, task_id=feature_engineering, run_id=scheduled__2026-05-12T00:00:00+00:00, execution_date=20260512T000000, start_date=20260513T163647, end_date=20260513T163650
+[2026-05-13T16:36:50.647+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-13T16:36:50.685+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-13T16:36:50.692+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
