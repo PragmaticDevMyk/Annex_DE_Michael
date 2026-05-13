@@ -1,0 +1,108 @@
+[2026-05-13T15:45:12.117+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-13T15:45:12.201+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data manual__2026-05-13T15:44:31.272852+00:00 [queued]>
+[2026-05-13T15:45:12.225+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data manual__2026-05-13T15:44:31.272852+00:00 [queued]>
+[2026-05-13T15:45:12.226+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-13T15:45:12.256+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_data> on 2026-05-13 15:44:31.272852+00:00
+[2026-05-13T15:45:12.271+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'ingest_data', 'manual__2026-05-13T15:44:31.272852+00:00', '--job-id', '200', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpix3l6xu2']
+[2026-05-13T15:45:12.274+0000] {standard_task_runner.py:91} INFO - Job 200: Subtask ingest_data
+[2026-05-13T15:45:12.275+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1250) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-13T15:45:12.279+0000] {standard_task_runner.py:64} INFO - Started process 1257 to run task
+[2026-05-13T15:45:12.425+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.ingest_data manual__2026-05-13T15:44:31.272852+00:00 [running]> on host 87c449af332c
+[2026-05-13T15:45:12.823+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='ingest_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-13T15:44:31.272852+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-05-13T15:44:31.272852+00:00'
+[2026-05-13T15:45:12.825+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-13T15:47:23.512+0000] {logging_mixin.py:188} INFO - Profiling of                    SALE_ID  SALE_DATE  ...             MODEL            Loan Id
+0        recg9SxxjvTdgP6NC 2025-06-26  ...           Note-20  recg9SxxjvTdgP6NC
+1        rec0P2Z778n8igV9u 2024-07-15  ...  Galaxy-S22-Ultra  rec0P2Z778n8igV9u
+2        recbZfItLLouuJj9h 2024-08-15  ...        Galaxy-A15  recbZfItLLouuJj9h
+3        recBtxgmMbuLKdANY 2023-05-05  ...        Galaxy-S10  recBtxgmMbuLKdANY
+4        recspqipYdXTH1lNV 2025-07-14  ...  Galaxy-S24-Ultra  recspqipYdXTH1lNV
+...                    ...        ...  ...               ...                ...
+1048570                NaN        NaT  ...               NaN                NaN
+1048571                NaN        NaT  ...               NaN                NaN
+1048572                NaN        NaT  ...               NaN                NaN
+1048573                NaN        NaT  ...               NaN                NaN
+1048574                NaN        NaT  ...               NaN                NaN
+
+[1048575 rows x 16 columns] data
+[2026-05-13T15:47:23.512+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:47:26.182+0000] {logging_mixin.py:188} INFO - Profiling of                               _id  ...             createdAt UTC
+0        67c57f7b5a877e67ca1e9636  ...  2025-03-03T12:12:02.196Z
+1        67c57f7c5a877e67ca1e964f  ...  2025-03-03T12:12:02.967Z
+2        67c585175a877e67ca1e99eb  ...  2025-03-03T10:32:05.687Z
+3        67c585185a877e67ca1e9a00  ...  2025-03-03T10:32:06.385Z
+4        67c593465a877e67ca1e9c4d  ...  2025-03-03T11:47:15.558Z
+...                           ...  ...                       ...
+1048570                       NaN  ...                       NaN
+1048571                       NaN  ...                       NaN
+1048572                       NaN  ...                       NaN
+1048573                       NaN  ...                       NaN
+1048574                       NaN  ...                       NaN
+
+[1048575 rows x 5 columns] data
+[2026-05-13T15:47:26.183+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:47:26.980+0000] {logging_mixin.py:188} INFO - Profiling of         Loan Id Citizenship  Gender
+0           NaN      KENYAN  Female
+1           NaN      KENYAN    Male
+2           NaN      KENYAN    Male
+3           NaN      KENYAN    Male
+4           NaN      KENYAN  Female
+...         ...         ...     ...
+1048570     NaN         NaN     NaN
+1048571     NaN         NaN     NaN
+1048572     NaN         NaN     NaN
+1048573     NaN         NaN     NaN
+1048574     NaN         NaN     NaN
+
+[1048575 rows x 3 columns] data
+[2026-05-13T15:47:26.982+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:47:27.502+0000] {logging_mixin.py:188} INFO - Profiling of         Loan Id  Duration  ...  Banks Received  Paybills Received Others
+0           NaN      12.0  ...           100.0                     120.0
+1           NaN      12.0  ...        772564.0                     150.0
+2           NaN      12.0  ...             0.0                    2467.0
+3           NaN      10.0  ...       6072623.0                  210110.0
+4           NaN       6.0  ...         44829.0                   18564.0
+...         ...       ...  ...             ...                       ...
+1048570     NaN       NaN  ...             NaN                       NaN
+1048571     NaN       NaN  ...             NaN                       NaN
+1048572     NaN       NaN  ...             NaN                       NaN
+1048573     NaN       NaN  ...             NaN                       NaN
+1048574     NaN       NaN  ...             NaN                       NaN
+
+[1048575 rows x 6 columns] data
+[2026-05-13T15:47:27.503+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:47:27.933+0000] {logging_mixin.py:188} INFO - Profiling of                  LOAN_ID  ... Unnamed: 28
+0      recnBZuKLsWCIm3cW  ...         NaN
+1      recwUTOdXSW5kSAed  ...         NaN
+2      recPCzNo2d9qK1VB3  ...         NaN
+3      rec98Vut24ajzNeWL  ...         NaN
+4      recEmhLuKhmOsEqGl  ...         NaN
+...                  ...  ...         ...
+71451  rec4H2RvBFRWlSk9q  ...         NaN
+71452  recsvtOtntr1VoNeq  ...         NaN
+71453  recQct0fCRQ3fHuic  ...         NaN
+71454  recoxmEnGMtKFkdY4  ...         NaN
+71455  recJjdoOyoQyy6Tf3  ...         NaN
+
+[71456 rows x 34 columns] data
+[2026-05-13T15:47:27.934+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:47:28.302+0000] {logging_mixin.py:188} INFO - Profiling of      Submission ID  ...                                Any other Feedback?
+0          BzK4Q11  ...                                                NaN
+1          b59V45Z  ...  Would like to upgrade once I'm done with this ...
+2          GxKvYKO  ...                Good service and efficient response
+3          A7KP49z  ...                                                NaN
+4          81zo6pr  ...                        Not satisfied with my phone
+...            ...  ...                                                ...
+4124       7R0XpWz  ...                                                NaN
+4125       q4QdM7Y  ...                                                NaN
+4126       aQJZ6qX  ...                                                NaN
+4127       QK8RME8  ...                                                NaN
+4128       q4QvEg8  ...                                                NaN
+
+[4129 rows x 17 columns] data
+[2026-05-13T15:47:28.302+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:47:40.206+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-13T15:47:40.206+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-13T15:47:40.224+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=abc_phones_etl_pipeline, task_id=ingest_data, run_id=manual__2026-05-13T15:44:31.272852+00:00, execution_date=20260513T154431, start_date=20260513T154512, end_date=20260513T154740
+[2026-05-13T15:47:40.330+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-13T15:47:40.363+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-13T15:47:40.367+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

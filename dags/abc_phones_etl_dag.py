@@ -7,6 +7,7 @@ from scripts.ingest import run_ingestion
 from scripts.clean import run_cleaning
 from scripts.feature_engineering import run_feature_engineering
 from scripts.load import run_load
+from scripts.quality_check import quality_check
 
 
 default_args = {
@@ -32,6 +33,11 @@ with DAG(
         python_callable=run_cleaning
     )
 
+    quality = PythonOperator(
+        task_id = 'quality_check',
+        python_callable = quality_check
+    )
+
     features = PythonOperator(
         task_id='feature_engineering',
         python_callable=run_feature_engineering
@@ -44,5 +50,5 @@ with DAG(
 
 
     
-
-    ingest >> clean >> features >> load
+    # TASK DEPENDENCY
+    ingest >> clean >> quality >> features >> load

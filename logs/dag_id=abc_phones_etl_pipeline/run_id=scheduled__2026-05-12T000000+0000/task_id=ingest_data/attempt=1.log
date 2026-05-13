@@ -373,3 +373,1026 @@ std              NaN  ...                 NaN
 [2026-05-13T11:48:26.361+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
 [2026-05-13T11:48:26.393+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
 [2026-05-13T11:48:26.397+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-13T14:22:53.205+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-13T14:22:53.272+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T14:22:53.287+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T14:22:53.287+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-13T14:22:53.310+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_data> on 2026-05-12 00:00:00+00:00
+[2026-05-13T14:22:53.324+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'ingest_data', 'scheduled__2026-05-12T00:00:00+00:00', '--job-id', '192', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpmphxspv6']
+[2026-05-13T14:22:53.333+0000] {standard_task_runner.py:91} INFO - Job 192: Subtask ingest_data
+[2026-05-13T14:22:53.334+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=876) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-13T14:22:53.335+0000] {standard_task_runner.py:64} INFO - Started process 881 to run task
+[2026-05-13T14:22:53.520+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-13T14:22:53.729+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='ingest_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-12T00:00:00+00:00'
+[2026-05-13T14:22:53.731+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-13T14:25:41.319+0000] {logging_mixin.py:188} INFO - Shape: (1048575, 16)
+[2026-05-13T14:25:41.320+0000] {logging_mixin.py:188} INFO - 
+Column Types:
+[2026-05-13T14:25:41.321+0000] {logging_mixin.py:188} INFO -  SALE_ID                             object
+SALE_DATE                   datetime64[ns]
+RETURNED                           float64
+RETURN_DATE                 datetime64[ns]
+SALE_TYPE                           object
+SELLER                              object
+SELLER_TYPE                         object
+RETURN_POLICY_COMPLIANCE            object
+CASH_PRICE                         float64
+LOAN_PRICE                         float64
+CLIENT_MODEL                        object
+BUSINESS_MODEL                      object
+LOAN_TERM                           object
+PRODUCT_NAME                        object
+MODEL                               object
+Loan Id                             object
+dtype: object
+[2026-05-13T14:25:41.686+0000] {logging_mixin.py:188} INFO - 
+Missing Values:
+[2026-05-13T14:25:41.687+0000] {logging_mixin.py:188} INFO -  SALE_ID                     1027828
+SALE_DATE                   1027828
+RETURNED                    1027828
+RETURN_DATE                 1046831
+SALE_TYPE                   1027830
+SELLER                      1027905
+SELLER_TYPE                 1032799
+RETURN_POLICY_COMPLIANCE    1046831
+CASH_PRICE                  1027830
+LOAN_PRICE                  1027830
+CLIENT_MODEL                1027853
+BUSINESS_MODEL              1027828
+LOAN_TERM                   1027832
+PRODUCT_NAME                1027830
+MODEL                       1027830
+Loan Id                     1027879
+dtype: int64
+[2026-05-13T14:25:42.343+0000] {logging_mixin.py:188} INFO - 
+Duplicate Rows: 1027827
+[2026-05-13T14:25:43.128+0000] {logging_mixin.py:188} INFO - 
+Summary Stats:
+[2026-05-13T14:25:43.152+0000] {logging_mixin.py:188} INFO -                    SALE_ID  ...            Loan Id
+count               20747  ...              20696
+unique              20747  ...              20691
+top     recg9SxxjvTdgP6NC  ...  rec1s8Oc6qhMCGKZ2
+freq                    1  ...                  2
+mean                  NaN  ...                NaN
+min                   NaN  ...                NaN
+25%                   NaN  ...                NaN
+50%                   NaN  ...                NaN
+75%                   NaN  ...                NaN
+max                   NaN  ...                NaN
+std                   NaN  ...                NaN
+
+[11 rows x 16 columns]
+[2026-05-13T14:25:43.153+0000] {logging_mixin.py:188} INFO - Shape: (1048575, 5)
+[2026-05-13T14:25:43.154+0000] {logging_mixin.py:188} INFO - 
+Column Types:
+[2026-05-13T14:25:43.155+0000] {logging_mixin.py:188} INFO -  _id              object
+provider         object
+date_of_birth    object
+Loan Id          object
+createdAt UTC    object
+dtype: object
+[2026-05-13T14:25:43.317+0000] {logging_mixin.py:188} INFO - 
+Missing Values:
+[2026-05-13T14:25:43.318+0000] {logging_mixin.py:188} INFO -  _id               991445
+provider          991445
+date_of_birth     991654
+Loan Id          1035013
+createdAt UTC     991445
+dtype: int64
+[2026-05-13T14:25:43.541+0000] {logging_mixin.py:188} INFO - 
+Duplicate Rows: 991444
+[2026-05-13T14:25:43.874+0000] {logging_mixin.py:188} INFO - 
+Summary Stats:
+[2026-05-13T14:25:43.881+0000] {logging_mixin.py:188} INFO -                               _id  ...             createdAt UTC
+count                      57130  ...                     57130
+unique                     57130  ...                     57130
+top     67c57f7b5a877e67ca1e9636  ...  2025-03-03T12:12:02.196Z
+freq                           1  ...                         1
+
+[4 rows x 5 columns]
+[2026-05-13T14:25:43.882+0000] {logging_mixin.py:188} INFO - Shape: (1048575, 3)
+[2026-05-13T14:25:43.882+0000] {logging_mixin.py:188} INFO - 
+Column Types:
+[2026-05-13T14:25:43.883+0000] {logging_mixin.py:188} INFO -  Loan Id        object
+Citizenship    object
+Gender         object
+dtype: object
+[2026-05-13T14:25:43.980+0000] {logging_mixin.py:188} INFO - 
+Missing Values:
+[2026-05-13T14:25:43.981+0000] {logging_mixin.py:188} INFO -  Loan Id        1033679
+Citizenship     998787
+Gender          998792
+dtype: int64
+[2026-05-13T14:25:44.103+0000] {logging_mixin.py:188} INFO - 
+Duplicate Rows: 1038065
+[2026-05-13T14:25:44.279+0000] {logging_mixin.py:188} INFO - 
+Summary Stats:
+[2026-05-13T14:25:44.284+0000] {logging_mixin.py:188} INFO -                    Loan Id Citizenship Gender
+count               14896       49788  49783
+unique              10497           3      5
+top     recDXYKagrTFQRY6N      KENYAN   Male
+freq                   35       46075  31329
+[2026-05-13T14:25:44.284+0000] {logging_mixin.py:188} INFO - Shape: (1048575, 6)
+[2026-05-13T14:25:44.285+0000] {logging_mixin.py:188} INFO - 
+Column Types:
+[2026-05-13T14:25:44.286+0000] {logging_mixin.py:188} INFO -  Loan Id                         object
+Duration                       float64
+Received                       float64
+Persons Received From Total    float64
+Banks Received                 float64
+Paybills Received Others       float64
+dtype: object
+[2026-05-13T14:25:44.322+0000] {logging_mixin.py:188} INFO - 
+Missing Values:
+[2026-05-13T14:25:44.323+0000] {logging_mixin.py:188} INFO -  Loan Id                        1036690
+Duration                       1025736
+Received                       1025736
+Persons Received From Total    1025736
+Banks Received                 1025736
+Paybills Received Others       1025736
+dtype: int64
+[2026-05-13T14:25:44.472+0000] {logging_mixin.py:188} INFO - 
+Duplicate Rows: 1027254
+[2026-05-13T14:25:44.672+0000] {logging_mixin.py:188} INFO - 
+Summary Stats:
+[2026-05-13T14:25:44.683+0000] {logging_mixin.py:188} INFO -                    Loan Id  ...  Paybills Received Others
+count               11885  ...              2.283900e+04
+unique              10609  ...                       NaN
+top     rec7jCmNMPNWJHeDs  ...                       NaN
+freq                   11  ...                       NaN
+mean                  NaN  ...              9.228903e+04
+std                   NaN  ...              4.583737e+05
+min                   NaN  ...             -1.975599e+06
+25%                   NaN  ...              4.250000e+02
+50%                   NaN  ...              6.851700e+03
+75%                   NaN  ...              4.749500e+04
+max                   NaN  ...              2.200725e+07
+
+[11 rows x 6 columns]
+[2026-05-13T14:25:44.683+0000] {logging_mixin.py:188} INFO - Shape: (71456, 34)
+[2026-05-13T14:25:44.684+0000] {logging_mixin.py:188} INFO - 
+Column Types:
+[2026-05-13T14:25:44.685+0000] {logging_mixin.py:188} INFO -  LOAN_ID                             object
+DATE                                object
+CUSTOMER_AGE                         int64
+TOTAL_PAID                           int64
+TOTAL_DUE_TODAY                    float64
+BALANCE                            float64
+DAYS_PAST_DUE                        int64
+CLOSING_BALANCE                    float64
+ADVANCE                            float64
+BALANCE_DUE_TO_DATE                float64
+ARREARS                            float64
+BALANCE_DUE_STATUS                  object
+PAYMENT                              int64
+EXPECTED_PAYMENT                   float64
+FIRST_PAYMENT                        int64
+FIRST_EXPECTED_PAYMENT               int64
+ACCOUNT_STATUS_L1                   object
+ACCOUNT_STATUS_L2                   object
+RETURN_DATE                         object
+SALE_DATE                           object
+CREDIT_CHECK_DONE                   object
+PAYMENT_AMOUNT                     float64
+ADJUSTMENT_AMOUNT                  float64
+PREPAYMENT_AMOUNT                    int64
+DEPOSIT                            float64
+WEEKLY_RATE                        float64
+CREDIT_EXPIRY                       object
+NEXT_INVOICE_DATE                   object
+DISCOUNT                           float64
+OVERPAYMENT_AMOUNT                 float64
+MAX_PAYMENT_DATE                    object
+INITIAL_PAY                          int64
+TOTAL_PAID_WITH_ADJUSTMENTS_15D      int64
+Unnamed: 28                        float64
+dtype: object
+[2026-05-13T14:25:44.722+0000] {logging_mixin.py:188} INFO - 
+Missing Values:
+[2026-05-13T14:25:44.723+0000] {logging_mixin.py:188} INFO -  LOAN_ID                                0
+DATE                                   0
+CUSTOMER_AGE                           0
+TOTAL_PAID                             0
+TOTAL_DUE_TODAY                       28
+BALANCE                                8
+DAYS_PAST_DUE                          0
+CLOSING_BALANCE                        8
+ADVANCE                                0
+BALANCE_DUE_TO_DATE                   28
+ARREARS                                0
+BALANCE_DUE_STATUS                     0
+PAYMENT                                0
+EXPECTED_PAYMENT                       1
+FIRST_PAYMENT                          0
+FIRST_EXPECTED_PAYMENT                 0
+ACCOUNT_STATUS_L1                      0
+ACCOUNT_STATUS_L2                      0
+RETURN_DATE                        64570
+SALE_DATE                              0
+CREDIT_CHECK_DONE                      0
+PAYMENT_AMOUNT                     68293
+ADJUSTMENT_AMOUNT                  68293
+PREPAYMENT_AMOUNT                      0
+DEPOSIT                                8
+WEEKLY_RATE                            8
+CREDIT_EXPIRY                          0
+NEXT_INVOICE_DATE                      0
+DISCOUNT                               0
+OVERPAYMENT_AMOUNT                     0
+MAX_PAYMENT_DATE                     749
+INITIAL_PAY                            0
+TOTAL_PAID_WITH_ADJUSTMENTS_15D        0
+Unnamed: 28                        71456
+dtype: int64
+[2026-05-13T14:25:44.829+0000] {logging_mixin.py:188} INFO - 
+Duplicate Rows: 0
+[2026-05-13T14:25:45.110+0000] {logging_mixin.py:188} INFO - 
+Summary Stats:
+[2026-05-13T14:25:45.182+0000] {logging_mixin.py:188} INFO -                    LOAN_ID  ... Unnamed: 28
+count               71456  ...         0.0
+unique              20742  ...         NaN
+top     recnBZuKLsWCIm3cW  ...         NaN
+freq                    5  ...         NaN
+mean                  NaN  ...         NaN
+std                   NaN  ...         NaN
+min                   NaN  ...         NaN
+25%                   NaN  ...         NaN
+50%                   NaN  ...         NaN
+75%                   NaN  ...         NaN
+max                   NaN  ...         NaN
+
+[11 rows x 34 columns]
+[2026-05-13T14:25:45.183+0000] {logging_mixin.py:188} INFO - Shape: (4129, 17)
+[2026-05-13T14:25:45.184+0000] {logging_mixin.py:188} INFO - 
+Column Types:
+[2026-05-13T14:25:45.189+0000] {logging_mixin.py:188} INFO -  Submission ID                                                                                                                      object
+Respondent ID                                                                                                                      object
+Submitted at                                                                                                               datetime64[ns]
+Loan Id                                                                                                                            object
+Using a scale from 0 (not likely) to 10 (very likely), how likely are you to recommend ABC Phones to friends or family?           float64
+What is the main reason for your score?                                                                                            object
+What is one thing we could do to improve your experience with us?                                                                  object
+Are you happy with the quality and performance of your device?                                                                     object
+Are you happy with the service and support provided by ABC Phones?                                                                 object
+Have you ever experienced a delay in your payment reflecting in your ABC account?                                                  object
+Have you ever had difficulty getting assistance from ABC Phones customer support when needed?                                      object
+(If Yes) – Please describe the challenge you faced and how we can improve your experience.                                         object
+Have you experienced any battery-related issues with your MoPhones device?                                                         object
+Have you used the MoPhones app (MoApp) to manage your account or make payments?                                                    object
+Which communication channel do you prefer when contacting MoPhones for inquiries or support?                                       object
+Have you ever had your phone lock despite making a payment on time?                                                                object
+Any other Feedback?                                                                                                                object
+dtype: object
+[2026-05-13T14:25:45.196+0000] {logging_mixin.py:188} INFO - 
+Missing Values:
+[2026-05-13T14:25:45.198+0000] {logging_mixin.py:188} INFO -  Submission ID                                                                                                                 0
+Respondent ID                                                                                                                 0
+Submitted at                                                                                                                  0
+Loan Id                                                                                                                       0
+Using a scale from 0 (not likely) to 10 (very likely), how likely are you to recommend ABC Phones to friends or family?     144
+What is the main reason for your score?                                                                                    2946
+What is one thing we could do to improve your experience with us?                                                          2995
+Are you happy with the quality and performance of your device?                                                             1502
+Are you happy with the service and support provided by ABC Phones?                                                         1521
+Have you ever experienced a delay in your payment reflecting in your ABC account?                                          1760
+Have you ever had difficulty getting assistance from ABC Phones customer support when needed?                              1777
+(If Yes) – Please describe the challenge you faced and how we can improve your experience.                                 2169
+Have you experienced any battery-related issues with your MoPhones device?                                                 2048
+Have you used the MoPhones app (MoApp) to manage your account or make payments?                                            2069
+Which communication channel do you prefer when contacting MoPhones for inquiries or support?                               2092
+Have you ever had your phone lock despite making a payment on time?                                                        2099
+Any other Feedback?                                                                                                        2376
+dtype: int64
+[2026-05-13T14:25:45.230+0000] {logging_mixin.py:188} INFO - 
+Duplicate Rows: 0
+[2026-05-13T14:25:45.308+0000] {logging_mixin.py:188} INFO - 
+Summary Stats:
+[2026-05-13T14:25:45.357+0000] {logging_mixin.py:188} INFO -         Submission ID  ... Any other Feedback?
+count           4129  ...                1753
+unique          4129  ...                1163
+top          BzK4Q11  ...                  No
+freq               1  ...                 354
+mean             NaN  ...                 NaN
+min              NaN  ...                 NaN
+25%              NaN  ...                 NaN
+50%              NaN  ...                 NaN
+75%              NaN  ...                 NaN
+max              NaN  ...                 NaN
+std              NaN  ...                 NaN
+
+[11 rows x 17 columns]
+[2026-05-13T14:25:58.791+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-13T14:25:58.792+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-13T14:25:58.809+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=abc_phones_etl_pipeline, task_id=ingest_data, run_id=scheduled__2026-05-12T00:00:00+00:00, execution_date=20260512T000000, start_date=20260513T142253, end_date=20260513T142558
+[2026-05-13T14:25:58.893+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-13T14:25:58.925+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-13T14:25:58.930+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-13T15:36:52.279+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-13T15:36:52.364+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:36:52.381+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:36:52.384+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-13T15:36:52.439+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_data> on 2026-05-12 00:00:00+00:00
+[2026-05-13T15:36:52.459+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'ingest_data', 'scheduled__2026-05-12T00:00:00+00:00', '--job-id', '194', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpkk2bto26']
+[2026-05-13T15:36:52.465+0000] {standard_task_runner.py:91} INFO - Job 194: Subtask ingest_data
+[2026-05-13T15:36:52.471+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1179) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-13T15:36:52.472+0000] {standard_task_runner.py:64} INFO - Started process 1184 to run task
+[2026-05-13T15:36:52.596+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-13T15:36:52.836+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='ingest_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-12T00:00:00+00:00'
+[2026-05-13T15:36:52.837+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-13T15:37:02.752+0000] {local_task_job_runner.py:313} WARNING - State of this instance has been externally set to None. Terminating instance.
+[2026-05-13T15:37:02.755+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-13T15:37:02.763+0000] {process_utils.py:132} INFO - Sending 15 to group 1184. PIDs of all processes in the group: [1184]
+[2026-05-13T15:37:02.768+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 1184
+[2026-05-13T15:37:02.769+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-05-13T15:37:02.772+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-13T15:37:02.810+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/ingest.py", line 20, in run_ingestion
+    sales_sheets = pd.read_excel("/opt/airflow/data/bronze/SalesandCustomerData.xlsx", sheet_name=None, engine="openpyxl")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 517, in read_excel
+    data = io.parse(
+           ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1629, in parse
+    return self._reader.parse(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 793, in parse
+    data = self.get_sheet_data(sheet, file_rows_needed)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_openpyxl.py", line 616, in get_sheet_data
+    for row_number, row in enumerate(sheet.rows):
+  File "/home/airflow/.local/lib/python3.12/site-packages/openpyxl/worksheet/_read_only.py", line 85, in _cells_by_row
+    for idx, row in parser.parse():
+  File "/home/airflow/.local/lib/python3.12/site-packages/openpyxl/worksheet/_reader.py", line 168, in parse
+    element.clear()
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 2613, in signal_handler
+    raise AirflowTaskTerminated("Task received SIGTERM signal")
+airflow.exceptions.AirflowTaskTerminated: Task received SIGTERM signal
+[2026-05-13T15:37:02.824+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=abc_phones_etl_pipeline, task_id=ingest_data, run_id=scheduled__2026-05-12T00:00:00+00:00, execution_date=20260512T000000, start_date=20260513T153652, end_date=20260513T153702
+[2026-05-13T15:37:02.842+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 194 for task ingest_data ((psycopg2.errors.ForeignKeyViolation) insert or update on table "task_fail" violates foreign key constraint "task_fail_ti_fkey"
+DETAIL:  Key (dag_id, task_id, run_id, map_index)=(abc_phones_etl_pipeline, ingest_data, scheduled__2026-05-12T00:00:00+00:00, -1) is not present in table "task_instance".
+
+[SQL: INSERT INTO task_fail (task_id, dag_id, run_id, map_index, start_date, end_date, duration) VALUES (%(task_id)s, %(dag_id)s, %(run_id)s, %(map_index)s, %(start_date)s, %(end_date)s, %(duration)s) RETURNING task_fail.id]
+[parameters: {'task_id': 'ingest_data', 'dag_id': 'abc_phones_etl_pipeline', 'run_id': 'scheduled__2026-05-12T00:00:00+00:00', 'map_index': -1, 'start_date': datetime.datetime(2026, 5, 13, 15, 36, 52, 364905, tzinfo=Timezone('UTC')), 'end_date': datetime.datetime(2026, 5, 13, 15, 37, 2, 824131, tzinfo=Timezone('UTC')), 'duration': 10}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj); 1184)
+[2026-05-13T15:37:02.905+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=1184, status='terminated', exitcode=1, started='15:36:52') (1184) terminated with exit code 1
+[2026-05-13T15:40:20.279+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-13T15:40:20.365+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:40:20.380+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:40:20.382+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-13T15:40:20.410+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_data> on 2026-05-12 00:00:00+00:00
+[2026-05-13T15:40:20.431+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'ingest_data', 'scheduled__2026-05-12T00:00:00+00:00', '--job-id', '196', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpjazzh84k']
+[2026-05-13T15:40:20.435+0000] {standard_task_runner.py:91} INFO - Job 196: Subtask ingest_data
+[2026-05-13T15:40:20.438+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1203) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-13T15:40:20.444+0000] {standard_task_runner.py:64} INFO - Started process 1210 to run task
+[2026-05-13T15:40:20.558+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-13T15:40:20.746+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='ingest_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-12T00:00:00+00:00'
+[2026-05-13T15:40:20.748+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-13T15:40:40.862+0000] {local_task_job_runner.py:313} WARNING - State of this instance has been externally set to None. Terminating instance.
+[2026-05-13T15:40:40.864+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-13T15:40:40.865+0000] {process_utils.py:132} INFO - Sending 15 to group 1210. PIDs of all processes in the group: [1210]
+[2026-05-13T15:40:40.866+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 1210
+[2026-05-13T15:40:40.867+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-05-13T15:40:40.868+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-13T15:40:40.886+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/ingest.py", line 20, in run_ingestion
+    sales_sheets = pd.read_excel("/opt/airflow/data/bronze/SalesandCustomerData.xlsx", sheet_name=None, engine="openpyxl")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 517, in read_excel
+    data = io.parse(
+           ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1629, in parse
+    return self._reader.parse(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 793, in parse
+    data = self.get_sheet_data(sheet, file_rows_needed)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_openpyxl.py", line 616, in get_sheet_data
+    for row_number, row in enumerate(sheet.rows):
+  File "/home/airflow/.local/lib/python3.12/site-packages/openpyxl/worksheet/_read_only.py", line 85, in _cells_by_row
+    for idx, row in parser.parse():
+  File "/home/airflow/.local/lib/python3.12/site-packages/openpyxl/worksheet/_reader.py", line 156, in parse
+    for _, element in it:
+  File "/usr/local/lib/python3.12/xml/etree/ElementTree.py", line 1241, in iterator
+    pullparser.feed(data)
+  File "/usr/local/lib/python3.12/xml/etree/ElementTree.py", line 1284, in feed
+    self._parser.feed(data)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 2613, in signal_handler
+    raise AirflowTaskTerminated("Task received SIGTERM signal")
+airflow.exceptions.AirflowTaskTerminated: Task received SIGTERM signal
+[2026-05-13T15:40:40.899+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=abc_phones_etl_pipeline, task_id=ingest_data, run_id=scheduled__2026-05-12T00:00:00+00:00, execution_date=20260512T000000, start_date=20260513T154020, end_date=20260513T154040
+[2026-05-13T15:40:40.915+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 196 for task ingest_data ((psycopg2.errors.ForeignKeyViolation) insert or update on table "task_fail" violates foreign key constraint "task_fail_ti_fkey"
+DETAIL:  Key (dag_id, task_id, run_id, map_index)=(abc_phones_etl_pipeline, ingest_data, scheduled__2026-05-12T00:00:00+00:00, -1) is not present in table "task_instance".
+
+[SQL: INSERT INTO task_fail (task_id, dag_id, run_id, map_index, start_date, end_date, duration) VALUES (%(task_id)s, %(dag_id)s, %(run_id)s, %(map_index)s, %(start_date)s, %(end_date)s, %(duration)s) RETURNING task_fail.id]
+[parameters: {'task_id': 'ingest_data', 'dag_id': 'abc_phones_etl_pipeline', 'run_id': 'scheduled__2026-05-12T00:00:00+00:00', 'map_index': -1, 'start_date': datetime.datetime(2026, 5, 13, 15, 40, 20, 365850, tzinfo=Timezone('UTC')), 'end_date': datetime.datetime(2026, 5, 13, 15, 40, 40, 899108, tzinfo=Timezone('UTC')), 'duration': 20}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj); 1210)
+[2026-05-13T15:40:40.962+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=1210, status='terminated', exitcode=1, started='15:40:20') (1210) terminated with exit code 1
+[2026-05-13T15:41:13.977+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-13T15:41:14.032+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:41:14.041+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:41:14.042+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-13T15:41:14.091+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_data> on 2026-05-12 00:00:00+00:00
+[2026-05-13T15:41:14.102+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'ingest_data', 'scheduled__2026-05-12T00:00:00+00:00', '--job-id', '198', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmp1h215h3l']
+[2026-05-13T15:41:14.105+0000] {standard_task_runner.py:91} INFO - Job 198: Subtask ingest_data
+[2026-05-13T15:41:14.106+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1219) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-13T15:41:14.107+0000] {standard_task_runner.py:64} INFO - Started process 1224 to run task
+[2026-05-13T15:41:14.190+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-13T15:41:14.332+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='ingest_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-12T00:00:00+00:00'
+[2026-05-13T15:41:14.333+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-13T15:44:18.299+0000] {logging_mixin.py:188} INFO - Profiling of                    SALE_ID  SALE_DATE  ...             MODEL            Loan Id
+0        recg9SxxjvTdgP6NC 2025-06-26  ...           Note-20  recg9SxxjvTdgP6NC
+1        rec0P2Z778n8igV9u 2024-07-15  ...  Galaxy-S22-Ultra  rec0P2Z778n8igV9u
+2        recbZfItLLouuJj9h 2024-08-15  ...        Galaxy-A15  recbZfItLLouuJj9h
+3        recBtxgmMbuLKdANY 2023-05-05  ...        Galaxy-S10  recBtxgmMbuLKdANY
+4        recspqipYdXTH1lNV 2025-07-14  ...  Galaxy-S24-Ultra  recspqipYdXTH1lNV
+...                    ...        ...  ...               ...                ...
+1048570                NaN        NaT  ...               NaN                NaN
+1048571                NaN        NaT  ...               NaN                NaN
+1048572                NaN        NaT  ...               NaN                NaN
+1048573                NaN        NaT  ...               NaN                NaN
+1048574                NaN        NaT  ...               NaN                NaN
+
+[1048575 rows x 16 columns] data
+[2026-05-13T15:44:18.302+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:44:22.184+0000] {logging_mixin.py:188} INFO - Profiling of                               _id  ...             createdAt UTC
+0        67c57f7b5a877e67ca1e9636  ...  2025-03-03T12:12:02.196Z
+1        67c57f7c5a877e67ca1e964f  ...  2025-03-03T12:12:02.967Z
+2        67c585175a877e67ca1e99eb  ...  2025-03-03T10:32:05.687Z
+3        67c585185a877e67ca1e9a00  ...  2025-03-03T10:32:06.385Z
+4        67c593465a877e67ca1e9c4d  ...  2025-03-03T11:47:15.558Z
+...                           ...  ...                       ...
+1048570                       NaN  ...                       NaN
+1048571                       NaN  ...                       NaN
+1048572                       NaN  ...                       NaN
+1048573                       NaN  ...                       NaN
+1048574                       NaN  ...                       NaN
+
+[1048575 rows x 5 columns] data
+[2026-05-13T15:44:22.185+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:44:24.201+0000] {logging_mixin.py:188} INFO - Profiling of         Loan Id Citizenship  Gender
+0           NaN      KENYAN  Female
+1           NaN      KENYAN    Male
+2           NaN      KENYAN    Male
+3           NaN      KENYAN    Male
+4           NaN      KENYAN  Female
+...         ...         ...     ...
+1048570     NaN         NaN     NaN
+1048571     NaN         NaN     NaN
+1048572     NaN         NaN     NaN
+1048573     NaN         NaN     NaN
+1048574     NaN         NaN     NaN
+
+[1048575 rows x 3 columns] data
+[2026-05-13T15:44:24.203+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:44:25.291+0000] {logging_mixin.py:188} INFO - Profiling of         Loan Id  Duration  ...  Banks Received  Paybills Received Others
+0           NaN      12.0  ...           100.0                     120.0
+1           NaN      12.0  ...        772564.0                     150.0
+2           NaN      12.0  ...             0.0                    2467.0
+3           NaN      10.0  ...       6072623.0                  210110.0
+4           NaN       6.0  ...         44829.0                   18564.0
+...         ...       ...  ...             ...                       ...
+1048570     NaN       NaN  ...             NaN                       NaN
+1048571     NaN       NaN  ...             NaN                       NaN
+1048572     NaN       NaN  ...             NaN                       NaN
+1048573     NaN       NaN  ...             NaN                       NaN
+1048574     NaN       NaN  ...             NaN                       NaN
+
+[1048575 rows x 6 columns] data
+[2026-05-13T15:44:25.293+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:44:26.010+0000] {logging_mixin.py:188} INFO - Profiling of                  LOAN_ID  ... Unnamed: 28
+0      recnBZuKLsWCIm3cW  ...         NaN
+1      recwUTOdXSW5kSAed  ...         NaN
+2      recPCzNo2d9qK1VB3  ...         NaN
+3      rec98Vut24ajzNeWL  ...         NaN
+4      recEmhLuKhmOsEqGl  ...         NaN
+...                  ...  ...         ...
+71451  rec4H2RvBFRWlSk9q  ...         NaN
+71452  recsvtOtntr1VoNeq  ...         NaN
+71453  recQct0fCRQ3fHuic  ...         NaN
+71454  recoxmEnGMtKFkdY4  ...         NaN
+71455  recJjdoOyoQyy6Tf3  ...         NaN
+
+[71456 rows x 34 columns] data
+[2026-05-13T15:44:26.012+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:44:26.615+0000] {logging_mixin.py:188} INFO - Profiling of      Submission ID  ...                                Any other Feedback?
+0          BzK4Q11  ...                                                NaN
+1          b59V45Z  ...  Would like to upgrade once I'm done with this ...
+2          GxKvYKO  ...                Good service and efficient response
+3          A7KP49z  ...                                                NaN
+4          81zo6pr  ...                        Not satisfied with my phone
+...            ...  ...                                                ...
+4124       7R0XpWz  ...                                                NaN
+4125       q4QdM7Y  ...                                                NaN
+4126       aQJZ6qX  ...                                                NaN
+4127       QK8RME8  ...                                                NaN
+4128       q4QvEg8  ...                                                NaN
+
+[4129 rows x 17 columns] data
+[2026-05-13T15:44:26.616+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:44:32.526+0000] {local_task_job_runner.py:313} WARNING - State of this instance has been externally set to None. Terminating instance.
+[2026-05-13T15:44:32.531+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-13T15:44:32.543+0000] {process_utils.py:132} INFO - Sending 15 to group 1224. PIDs of all processes in the group: [1224]
+[2026-05-13T15:44:32.548+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 1224
+[2026-05-13T15:44:32.550+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-05-13T15:44:32.558+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-13T15:44:32.618+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/ingest.py", line 39, in run_ingestion
+    sales_details.to_csv("/opt/airflow/data/silver/sales_details.csv", index=False)
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/generic.py", line 3902, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/formats/format.py", line 1152, in to_csv
+    csv_formatter.save()
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 266, in save
+    self._save()
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 271, in _save
+    self._save_body()
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 309, in _save_body
+    self._save_chunk(start_i, end_i)
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/formats/csvs.py", line 320, in _save_chunk
+    libwriters.write_csv_rows(
+  File "writers.pyx", line 72, in pandas._libs.writers.write_csv_rows
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 2613, in signal_handler
+    raise AirflowTaskTerminated("Task received SIGTERM signal")
+airflow.exceptions.AirflowTaskTerminated: Task received SIGTERM signal
+[2026-05-13T15:44:32.774+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=abc_phones_etl_pipeline, task_id=ingest_data, run_id=scheduled__2026-05-12T00:00:00+00:00, execution_date=20260512T000000, start_date=20260513T154114, end_date=20260513T154432
+[2026-05-13T15:44:32.861+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 198 for task ingest_data ((psycopg2.errors.ForeignKeyViolation) insert or update on table "task_fail" violates foreign key constraint "task_fail_ti_fkey"
+DETAIL:  Key (dag_id, task_id, run_id, map_index)=(abc_phones_etl_pipeline, ingest_data, scheduled__2026-05-12T00:00:00+00:00, -1) is not present in table "task_instance".
+
+[SQL: INSERT INTO task_fail (task_id, dag_id, run_id, map_index, start_date, end_date, duration) VALUES (%(task_id)s, %(dag_id)s, %(run_id)s, %(map_index)s, %(start_date)s, %(end_date)s, %(duration)s) RETURNING task_fail.id]
+[parameters: {'task_id': 'ingest_data', 'dag_id': 'abc_phones_etl_pipeline', 'run_id': 'scheduled__2026-05-12T00:00:00+00:00', 'map_index': -1, 'start_date': datetime.datetime(2026, 5, 13, 15, 41, 14, 33609, tzinfo=Timezone('UTC')), 'end_date': datetime.datetime(2026, 5, 13, 15, 44, 32, 773451, tzinfo=Timezone('UTC')), 'duration': 198}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj); 1224)
+[2026-05-13T15:44:33.095+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=1224, status='terminated', exitcode=1, started='15:41:13') (1224) terminated with exit code 1
+[2026-05-13T15:44:52.823+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-13T15:44:52.935+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:44:52.954+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:44:52.955+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-13T15:44:52.994+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_data> on 2026-05-12 00:00:00+00:00
+[2026-05-13T15:44:53.018+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'ingest_data', 'scheduled__2026-05-12T00:00:00+00:00', '--job-id', '199', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpe4k6bjr5']
+[2026-05-13T15:44:53.025+0000] {standard_task_runner.py:91} INFO - Job 199: Subtask ingest_data
+[2026-05-13T15:44:53.028+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1244) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-13T15:44:53.036+0000] {standard_task_runner.py:64} INFO - Started process 1249 to run task
+[2026-05-13T15:44:53.175+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-13T15:44:53.369+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='ingest_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-12T00:00:00+00:00'
+[2026-05-13T15:44:53.371+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-13T15:45:03.208+0000] {local_task_job_runner.py:313} WARNING - State of this instance has been externally set to None. Terminating instance.
+[2026-05-13T15:45:03.211+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-13T15:45:03.220+0000] {process_utils.py:132} INFO - Sending 15 to group 1249. PIDs of all processes in the group: [1249]
+[2026-05-13T15:45:03.223+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 1249
+[2026-05-13T15:45:03.227+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-05-13T15:45:03.229+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-13T15:45:03.267+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/ingest.py", line 20, in run_ingestion
+    sales_sheets = pd.read_excel("/opt/airflow/data/bronze/SalesandCustomerData.xlsx", sheet_name=None, engine="openpyxl")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 517, in read_excel
+    data = io.parse(
+           ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1629, in parse
+    return self._reader.parse(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 793, in parse
+    data = self.get_sheet_data(sheet, file_rows_needed)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_openpyxl.py", line 616, in get_sheet_data
+    for row_number, row in enumerate(sheet.rows):
+  File "/home/airflow/.local/lib/python3.12/site-packages/openpyxl/worksheet/_read_only.py", line 85, in _cells_by_row
+    for idx, row in parser.parse():
+  File "/home/airflow/.local/lib/python3.12/site-packages/openpyxl/worksheet/_reader.py", line 156, in parse
+    for _, element in it:
+  File "/usr/local/lib/python3.12/xml/etree/ElementTree.py", line 1241, in iterator
+    pullparser.feed(data)
+  File "/usr/local/lib/python3.12/xml/etree/ElementTree.py", line 1284, in feed
+    self._parser.feed(data)
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 2613, in signal_handler
+    raise AirflowTaskTerminated("Task received SIGTERM signal")
+airflow.exceptions.AirflowTaskTerminated: Task received SIGTERM signal
+[2026-05-13T15:45:03.294+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=abc_phones_etl_pipeline, task_id=ingest_data, run_id=scheduled__2026-05-12T00:00:00+00:00, execution_date=20260512T000000, start_date=20260513T154452, end_date=20260513T154503
+[2026-05-13T15:45:03.347+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 199 for task ingest_data ((psycopg2.errors.ForeignKeyViolation) insert or update on table "task_fail" violates foreign key constraint "task_fail_ti_fkey"
+DETAIL:  Key (dag_id, task_id, run_id, map_index)=(abc_phones_etl_pipeline, ingest_data, scheduled__2026-05-12T00:00:00+00:00, -1) is not present in table "task_instance".
+
+[SQL: INSERT INTO task_fail (task_id, dag_id, run_id, map_index, start_date, end_date, duration) VALUES (%(task_id)s, %(dag_id)s, %(run_id)s, %(map_index)s, %(start_date)s, %(end_date)s, %(duration)s) RETURNING task_fail.id]
+[parameters: {'task_id': 'ingest_data', 'dag_id': 'abc_phones_etl_pipeline', 'run_id': 'scheduled__2026-05-12T00:00:00+00:00', 'map_index': -1, 'start_date': datetime.datetime(2026, 5, 13, 15, 44, 52, 936591, tzinfo=Timezone('UTC')), 'end_date': datetime.datetime(2026, 5, 13, 15, 45, 3, 293961, tzinfo=Timezone('UTC')), 'duration': 10}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj); 1249)
+[2026-05-13T15:45:03.478+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=1249, status='terminated', exitcode=1, started='15:44:52') (1249) terminated with exit code 1
+[2026-05-13T15:47:45.830+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-13T15:47:45.900+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:47:45.914+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:47:45.915+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-13T15:47:45.940+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_data> on 2026-05-12 00:00:00+00:00
+[2026-05-13T15:47:45.955+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'ingest_data', 'scheduled__2026-05-12T00:00:00+00:00', '--job-id', '201', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmp2_z8lbdy']
+[2026-05-13T15:47:45.960+0000] {standard_task_runner.py:91} INFO - Job 201: Subtask ingest_data
+[2026-05-13T15:47:45.963+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1266) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-13T15:47:45.964+0000] {standard_task_runner.py:64} INFO - Started process 1273 to run task
+[2026-05-13T15:47:46.060+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-13T15:47:46.223+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='ingest_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-12T00:00:00+00:00'
+[2026-05-13T15:47:46.225+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-13T15:48:31.641+0000] {local_task_job_runner.py:313} WARNING - State of this instance has been externally set to None. Terminating instance.
+[2026-05-13T15:48:31.643+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-13T15:48:31.649+0000] {process_utils.py:132} INFO - Sending 15 to group 1273. PIDs of all processes in the group: [1273]
+[2026-05-13T15:48:31.650+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 1273
+[2026-05-13T15:48:31.660+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-05-13T15:48:31.663+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-13T15:48:31.714+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/ingest.py", line 20, in run_ingestion
+    sales_sheets = pd.read_excel("/opt/airflow/data/bronze/SalesandCustomerData.xlsx", sheet_name=None, engine="openpyxl")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 517, in read_excel
+    data = io.parse(
+           ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1629, in parse
+    return self._reader.parse(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 793, in parse
+    data = self.get_sheet_data(sheet, file_rows_needed)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_openpyxl.py", line 616, in get_sheet_data
+    for row_number, row in enumerate(sheet.rows):
+  File "/home/airflow/.local/lib/python3.12/site-packages/openpyxl/worksheet/_read_only.py", line 85, in _cells_by_row
+    for idx, row in parser.parse():
+  File "/home/airflow/.local/lib/python3.12/site-packages/openpyxl/worksheet/_reader.py", line 167, in parse
+    row = self.parse_row(element)
+          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/openpyxl/worksheet/_reader.py", line 303, in parse_row
+    cells = [self.parse_cell(el) for el in row]
+             ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/openpyxl/worksheet/_reader.py", line 202, in parse_cell
+    row, column = coordinate_to_tuple(coordinate)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/openpyxl/utils/cell.py", line 215, in coordinate_to_tuple
+    return int(row), column_index_from_string(col)
+           ^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 2613, in signal_handler
+    raise AirflowTaskTerminated("Task received SIGTERM signal")
+airflow.exceptions.AirflowTaskTerminated: Task received SIGTERM signal
+[2026-05-13T15:48:31.740+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=abc_phones_etl_pipeline, task_id=ingest_data, run_id=scheduled__2026-05-12T00:00:00+00:00, execution_date=20260512T000000, start_date=20260513T154745, end_date=20260513T154831
+[2026-05-13T15:48:31.780+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 201 for task ingest_data ((psycopg2.errors.ForeignKeyViolation) insert or update on table "task_fail" violates foreign key constraint "task_fail_ti_fkey"
+DETAIL:  Key (dag_id, task_id, run_id, map_index)=(abc_phones_etl_pipeline, ingest_data, scheduled__2026-05-12T00:00:00+00:00, -1) is not present in table "task_instance".
+
+[SQL: INSERT INTO task_fail (task_id, dag_id, run_id, map_index, start_date, end_date, duration) VALUES (%(task_id)s, %(dag_id)s, %(run_id)s, %(map_index)s, %(start_date)s, %(end_date)s, %(duration)s) RETURNING task_fail.id]
+[parameters: {'task_id': 'ingest_data', 'dag_id': 'abc_phones_etl_pipeline', 'run_id': 'scheduled__2026-05-12T00:00:00+00:00', 'map_index': -1, 'start_date': datetime.datetime(2026, 5, 13, 15, 47, 45, 901916, tzinfo=Timezone('UTC')), 'end_date': datetime.datetime(2026, 5, 13, 15, 48, 31, 736254, tzinfo=Timezone('UTC')), 'duration': 45}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj); 1273)
+[2026-05-13T15:48:31.906+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=1273, status='terminated', exitcode=1, started='15:47:45') (1273) terminated with exit code 1
+[2026-05-13T15:49:03.785+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-13T15:49:03.837+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:49:03.849+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T15:49:03.850+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-13T15:49:03.869+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_data> on 2026-05-12 00:00:00+00:00
+[2026-05-13T15:49:03.879+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'ingest_data', 'scheduled__2026-05-12T00:00:00+00:00', '--job-id', '203', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpqojnqh_2']
+[2026-05-13T15:49:03.884+0000] {standard_task_runner.py:91} INFO - Job 203: Subtask ingest_data
+[2026-05-13T15:49:03.885+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1284) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-13T15:49:03.886+0000] {standard_task_runner.py:64} INFO - Started process 1289 to run task
+[2026-05-13T15:49:03.970+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-13T15:49:04.100+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='ingest_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-12T00:00:00+00:00'
+[2026-05-13T15:49:04.102+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-13T15:51:28.834+0000] {logging_mixin.py:188} INFO - Profiling of                    SALE_ID  SALE_DATE  ...             MODEL            Loan Id
+0        recg9SxxjvTdgP6NC 2025-06-26  ...           Note-20  recg9SxxjvTdgP6NC
+1        rec0P2Z778n8igV9u 2024-07-15  ...  Galaxy-S22-Ultra  rec0P2Z778n8igV9u
+2        recbZfItLLouuJj9h 2024-08-15  ...        Galaxy-A15  recbZfItLLouuJj9h
+3        recBtxgmMbuLKdANY 2023-05-05  ...        Galaxy-S10  recBtxgmMbuLKdANY
+4        recspqipYdXTH1lNV 2025-07-14  ...  Galaxy-S24-Ultra  recspqipYdXTH1lNV
+...                    ...        ...  ...               ...                ...
+1048570                NaN        NaT  ...               NaN                NaN
+1048571                NaN        NaT  ...               NaN                NaN
+1048572                NaN        NaT  ...               NaN                NaN
+1048573                NaN        NaT  ...               NaN                NaN
+1048574                NaN        NaT  ...               NaN                NaN
+
+[1048575 rows x 16 columns] data
+[2026-05-13T15:51:28.835+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:51:31.728+0000] {logging_mixin.py:188} INFO - Profiling of                               _id  ...             createdAt UTC
+0        67c57f7b5a877e67ca1e9636  ...  2025-03-03T12:12:02.196Z
+1        67c57f7c5a877e67ca1e964f  ...  2025-03-03T12:12:02.967Z
+2        67c585175a877e67ca1e99eb  ...  2025-03-03T10:32:05.687Z
+3        67c585185a877e67ca1e9a00  ...  2025-03-03T10:32:06.385Z
+4        67c593465a877e67ca1e9c4d  ...  2025-03-03T11:47:15.558Z
+...                           ...  ...                       ...
+1048570                       NaN  ...                       NaN
+1048571                       NaN  ...                       NaN
+1048572                       NaN  ...                       NaN
+1048573                       NaN  ...                       NaN
+1048574                       NaN  ...                       NaN
+
+[1048575 rows x 5 columns] data
+[2026-05-13T15:51:31.729+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:51:32.817+0000] {logging_mixin.py:188} INFO - Profiling of         Loan Id Citizenship  Gender
+0           NaN      KENYAN  Female
+1           NaN      KENYAN    Male
+2           NaN      KENYAN    Male
+3           NaN      KENYAN    Male
+4           NaN      KENYAN  Female
+...         ...         ...     ...
+1048570     NaN         NaN     NaN
+1048571     NaN         NaN     NaN
+1048572     NaN         NaN     NaN
+1048573     NaN         NaN     NaN
+1048574     NaN         NaN     NaN
+
+[1048575 rows x 3 columns] data
+[2026-05-13T15:51:32.820+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:51:33.455+0000] {logging_mixin.py:188} INFO - Profiling of         Loan Id  Duration  ...  Banks Received  Paybills Received Others
+0           NaN      12.0  ...           100.0                     120.0
+1           NaN      12.0  ...        772564.0                     150.0
+2           NaN      12.0  ...             0.0                    2467.0
+3           NaN      10.0  ...       6072623.0                  210110.0
+4           NaN       6.0  ...         44829.0                   18564.0
+...         ...       ...  ...             ...                       ...
+1048570     NaN       NaN  ...             NaN                       NaN
+1048571     NaN       NaN  ...             NaN                       NaN
+1048572     NaN       NaN  ...             NaN                       NaN
+1048573     NaN       NaN  ...             NaN                       NaN
+1048574     NaN       NaN  ...             NaN                       NaN
+
+[1048575 rows x 6 columns] data
+[2026-05-13T15:51:33.456+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:51:33.914+0000] {logging_mixin.py:188} INFO - Profiling of                  LOAN_ID  ... Unnamed: 28
+0      recnBZuKLsWCIm3cW  ...         NaN
+1      recwUTOdXSW5kSAed  ...         NaN
+2      recPCzNo2d9qK1VB3  ...         NaN
+3      rec98Vut24ajzNeWL  ...         NaN
+4      recEmhLuKhmOsEqGl  ...         NaN
+...                  ...  ...         ...
+71451  rec4H2RvBFRWlSk9q  ...         NaN
+71452  recsvtOtntr1VoNeq  ...         NaN
+71453  recQct0fCRQ3fHuic  ...         NaN
+71454  recoxmEnGMtKFkdY4  ...         NaN
+71455  recJjdoOyoQyy6Tf3  ...         NaN
+
+[71456 rows x 34 columns] data
+[2026-05-13T15:51:33.915+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:51:34.309+0000] {logging_mixin.py:188} INFO - Profiling of      Submission ID  ...                                Any other Feedback?
+0          BzK4Q11  ...                                                NaN
+1          b59V45Z  ...  Would like to upgrade once I'm done with this ...
+2          GxKvYKO  ...                Good service and efficient response
+3          A7KP49z  ...                                                NaN
+4          81zo6pr  ...                        Not satisfied with my phone
+...            ...  ...                                                ...
+4124       7R0XpWz  ...                                                NaN
+4125       q4QdM7Y  ...                                                NaN
+4126       aQJZ6qX  ...                                                NaN
+4127       QK8RME8  ...                                                NaN
+4128       q4QvEg8  ...                                                NaN
+
+[4129 rows x 17 columns] data
+[2026-05-13T15:51:34.310+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T15:51:50.454+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-13T15:51:50.455+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-13T15:51:50.473+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=abc_phones_etl_pipeline, task_id=ingest_data, run_id=scheduled__2026-05-12T00:00:00+00:00, execution_date=20260512T000000, start_date=20260513T154903, end_date=20260513T155150
+[2026-05-13T15:51:50.600+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-13T15:51:50.652+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-13T15:51:50.659+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-13T16:28:14.647+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-13T16:28:14.764+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T16:28:14.776+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T16:28:14.777+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-13T16:28:14.811+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_data> on 2026-05-12 00:00:00+00:00
+[2026-05-13T16:28:14.824+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'ingest_data', 'scheduled__2026-05-12T00:00:00+00:00', '--job-id', '213', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpu70l2vtf']
+[2026-05-13T16:28:14.830+0000] {standard_task_runner.py:91} INFO - Job 213: Subtask ingest_data
+[2026-05-13T16:28:14.830+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1498) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-13T16:28:14.832+0000] {standard_task_runner.py:64} INFO - Started process 1503 to run task
+[2026-05-13T16:28:14.957+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-13T16:28:15.120+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='ingest_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-12T00:00:00+00:00'
+[2026-05-13T16:28:15.122+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-13T16:28:25.003+0000] {local_task_job_runner.py:313} WARNING - State of this instance has been externally set to None. Terminating instance.
+[2026-05-13T16:28:25.005+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2026-05-13T16:28:25.009+0000] {process_utils.py:132} INFO - Sending 15 to group 1503. PIDs of all processes in the group: [1503]
+[2026-05-13T16:28:25.010+0000] {process_utils.py:87} INFO - Sending the signal 15 to group 1503
+[2026-05-13T16:28:25.011+0000] {taskinstance.py:2611} ERROR - Received SIGTERM. Terminating subprocesses.
+[2026-05-13T16:28:25.013+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-13T16:28:25.035+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/scripts/ingest.py", line 21, in run_ingestion
+    sales_sheets = pd.read_excel("/opt/airflow/data/bronze/SalesandCustomerData.xlsx", sheet_name=None, engine="openpyxl")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 517, in read_excel
+    data = io.parse(
+           ^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 1629, in parse
+    return self._reader.parse(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_base.py", line 793, in parse
+    data = self.get_sheet_data(sheet, file_rows_needed)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_openpyxl.py", line 617, in get_sheet_data
+    converted_row = [self._convert_cell(cell) for cell in row]
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/excel/_openpyxl.py", line 596, in _convert_cell
+    if cell.value is None:
+       ^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/openpyxl/cell/read_only.py", line 108, in value
+    @property
+    
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 2613, in signal_handler
+    raise AirflowTaskTerminated("Task received SIGTERM signal")
+airflow.exceptions.AirflowTaskTerminated: Task received SIGTERM signal
+[2026-05-13T16:28:25.048+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=abc_phones_etl_pipeline, task_id=ingest_data, run_id=scheduled__2026-05-12T00:00:00+00:00, execution_date=20260512T000000, start_date=20260513T162814, end_date=20260513T162825
+[2026-05-13T16:28:25.069+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 213 for task ingest_data ((psycopg2.errors.ForeignKeyViolation) insert or update on table "task_fail" violates foreign key constraint "task_fail_ti_fkey"
+DETAIL:  Key (dag_id, task_id, run_id, map_index)=(abc_phones_etl_pipeline, ingest_data, scheduled__2026-05-12T00:00:00+00:00, -1) is not present in table "task_instance".
+
+[SQL: INSERT INTO task_fail (task_id, dag_id, run_id, map_index, start_date, end_date, duration) VALUES (%(task_id)s, %(dag_id)s, %(run_id)s, %(map_index)s, %(start_date)s, %(end_date)s, %(duration)s) RETURNING task_fail.id]
+[parameters: {'task_id': 'ingest_data', 'dag_id': 'abc_phones_etl_pipeline', 'run_id': 'scheduled__2026-05-12T00:00:00+00:00', 'map_index': -1, 'start_date': datetime.datetime(2026, 5, 13, 16, 28, 14, 765624, tzinfo=Timezone('UTC')), 'end_date': datetime.datetime(2026, 5, 13, 16, 28, 25, 48062, tzinfo=Timezone('UTC')), 'duration': 10}]
+(Background on this error at: https://sqlalche.me/e/14/gkpj); 1503)
+[2026-05-13T16:28:25.104+0000] {process_utils.py:80} INFO - Process psutil.Process(pid=1503, status='terminated', exitcode=1, started='16:28:14') (1503) terminated with exit code 1
+[2026-05-13T16:31:40.317+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-05-13T16:31:40.377+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T16:31:40.390+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [queued]>
+[2026-05-13T16:31:40.391+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2026-05-13T16:31:40.439+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_data> on 2026-05-12 00:00:00+00:00
+[2026-05-13T16:31:40.453+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'abc_phones_etl_pipeline', 'ingest_data', 'scheduled__2026-05-12T00:00:00+00:00', '--job-id', '215', '--raw', '--subdir', 'DAGS_FOLDER/abc_phones_etl_dag.py', '--cfg-path', '/tmp/tmpnissb20x']
+[2026-05-13T16:31:40.458+0000] {standard_task_runner.py:91} INFO - Job 215: Subtask ingest_data
+[2026-05-13T16:31:40.461+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:62 DeprecationWarning: This process (pid=1522) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-05-13T16:31:40.463+0000] {standard_task_runner.py:64} INFO - Started process 1529 to run task
+[2026-05-13T16:31:40.561+0000] {task_command.py:426} INFO - Running <TaskInstance: abc_phones_etl_pipeline.ingest_data scheduled__2026-05-12T00:00:00+00:00 [running]> on host 87c449af332c
+[2026-05-13T16:31:40.871+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_engineer' AIRFLOW_CTX_DAG_ID='abc_phones_etl_pipeline' AIRFLOW_CTX_TASK_ID='ingest_data' AIRFLOW_CTX_EXECUTION_DATE='2026-05-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-05-12T00:00:00+00:00'
+[2026-05-13T16:31:40.874+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-05-13T16:34:56.944+0000] {logging_mixin.py:188} INFO - Profiling of                    SALE_ID  SALE_DATE  ...             MODEL            Loan Id
+0        recg9SxxjvTdgP6NC 2025-06-26  ...           Note-20  recg9SxxjvTdgP6NC
+1        rec0P2Z778n8igV9u 2024-07-15  ...  Galaxy-S22-Ultra  rec0P2Z778n8igV9u
+2        recbZfItLLouuJj9h 2024-08-15  ...        Galaxy-A15  recbZfItLLouuJj9h
+3        recBtxgmMbuLKdANY 2023-05-05  ...        Galaxy-S10  recBtxgmMbuLKdANY
+4        recspqipYdXTH1lNV 2025-07-14  ...  Galaxy-S24-Ultra  recspqipYdXTH1lNV
+...                    ...        ...  ...               ...                ...
+1048570                NaN        NaT  ...               NaN                NaN
+1048571                NaN        NaT  ...               NaN                NaN
+1048572                NaN        NaT  ...               NaN                NaN
+1048573                NaN        NaT  ...               NaN                NaN
+1048574                NaN        NaT  ...               NaN                NaN
+
+[1048575 rows x 16 columns] data
+[2026-05-13T16:34:56.965+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T16:34:59.700+0000] {logging_mixin.py:188} INFO - Profiling of                               _id  ...             createdAt UTC
+0        67c57f7b5a877e67ca1e9636  ...  2025-03-03T12:12:02.196Z
+1        67c57f7c5a877e67ca1e964f  ...  2025-03-03T12:12:02.967Z
+2        67c585175a877e67ca1e99eb  ...  2025-03-03T10:32:05.687Z
+3        67c585185a877e67ca1e9a00  ...  2025-03-03T10:32:06.385Z
+4        67c593465a877e67ca1e9c4d  ...  2025-03-03T11:47:15.558Z
+...                           ...  ...                       ...
+1048570                       NaN  ...                       NaN
+1048571                       NaN  ...                       NaN
+1048572                       NaN  ...                       NaN
+1048573                       NaN  ...                       NaN
+1048574                       NaN  ...                       NaN
+
+[1048575 rows x 5 columns] data
+[2026-05-13T16:34:59.700+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T16:35:00.773+0000] {logging_mixin.py:188} INFO - Profiling of         Loan Id Citizenship  Gender
+0           NaN      KENYAN  Female
+1           NaN      KENYAN    Male
+2           NaN      KENYAN    Male
+3           NaN      KENYAN    Male
+4           NaN      KENYAN  Female
+...         ...         ...     ...
+1048570     NaN         NaN     NaN
+1048571     NaN         NaN     NaN
+1048572     NaN         NaN     NaN
+1048573     NaN         NaN     NaN
+1048574     NaN         NaN     NaN
+
+[1048575 rows x 3 columns] data
+[2026-05-13T16:35:00.774+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T16:35:01.356+0000] {logging_mixin.py:188} INFO - Profiling of         Loan Id  Duration  ...  Banks Received  Paybills Received Others
+0           NaN      12.0  ...           100.0                     120.0
+1           NaN      12.0  ...        772564.0                     150.0
+2           NaN      12.0  ...             0.0                    2467.0
+3           NaN      10.0  ...       6072623.0                  210110.0
+4           NaN       6.0  ...         44829.0                   18564.0
+...         ...       ...  ...             ...                       ...
+1048570     NaN       NaN  ...             NaN                       NaN
+1048571     NaN       NaN  ...             NaN                       NaN
+1048572     NaN       NaN  ...             NaN                       NaN
+1048573     NaN       NaN  ...             NaN                       NaN
+1048574     NaN       NaN  ...             NaN                       NaN
+
+[1048575 rows x 6 columns] data
+[2026-05-13T16:35:01.357+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T16:35:01.973+0000] {logging_mixin.py:188} INFO - Profiling of                  LOAN_ID  ... Unnamed: 28
+0      recnBZuKLsWCIm3cW  ...         NaN
+1      recwUTOdXSW5kSAed  ...         NaN
+2      recPCzNo2d9qK1VB3  ...         NaN
+3      rec98Vut24ajzNeWL  ...         NaN
+4      recEmhLuKhmOsEqGl  ...         NaN
+...                  ...  ...         ...
+71451  rec4H2RvBFRWlSk9q  ...         NaN
+71452  recsvtOtntr1VoNeq  ...         NaN
+71453  recQct0fCRQ3fHuic  ...         NaN
+71454  recoxmEnGMtKFkdY4  ...         NaN
+71455  recJjdoOyoQyy6Tf3  ...         NaN
+
+[71456 rows x 34 columns] data
+[2026-05-13T16:35:01.974+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T16:35:02.804+0000] {logging_mixin.py:188} INFO - Profiling of      Submission ID  ...                                Any other Feedback?
+0          BzK4Q11  ...                                                NaN
+1          b59V45Z  ...  Would like to upgrade once I'm done with this ...
+2          GxKvYKO  ...                Good service and efficient response
+3          A7KP49z  ...                                                NaN
+4          81zo6pr  ...                        Not satisfied with my phone
+...            ...  ...                                                ...
+4124       7R0XpWz  ...                                                NaN
+4125       q4QdM7Y  ...                                                NaN
+4126       aQJZ6qX  ...                                                NaN
+4127       QK8RME8  ...                                                NaN
+4128       q4QvEg8  ...                                                NaN
+
+[4129 rows x 17 columns] data
+[2026-05-13T16:35:02.805+0000] {logging_mixin.py:188} INFO - ********************
+[2026-05-13T16:35:19.422+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-05-13T16:35:19.423+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-05-13T16:35:19.443+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=abc_phones_etl_pipeline, task_id=ingest_data, run_id=scheduled__2026-05-12T00:00:00+00:00, execution_date=20260512T000000, start_date=20260513T163140, end_date=20260513T163519
+[2026-05-13T16:35:19.571+0000] {local_task_job_runner.py:243} INFO - Task exited with return code 0
+[2026-05-13T16:35:19.637+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-05-13T16:35:19.668+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
